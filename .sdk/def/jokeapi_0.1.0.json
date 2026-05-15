@@ -1,0 +1,733 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "JokeAPI",
+    "description": "A REST API serving uniformly and well formatted jokes without the need for API token, membership, registration or payment. Supports various filters for customized joke retrieval.",
+    "version": "2.3.3",
+    "contact": {
+      "url": "https://v2.jokeapi.dev/"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://github.com/Sv443/JokeAPI"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://v2.jokeapi.dev",
+      "description": "JokeAPI v2 Production Server"
+    }
+  ],
+  "paths": {
+    "/joke/{category}": {
+      "get": {
+        "summary": "Get a joke",
+        "description": "Retrieve one or more jokes based on specified category and optional filters. Supports filtering by flags, language, type, search string, ID range, and amount.",
+        "operationId": "getJoke",
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "required": true,
+            "description": "Category of jokes to retrieve. Use 'Any' for random category or specify one or more categories separated by commas.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Any",
+                "Programming",
+                "Misc",
+                "Dark",
+                "Pun",
+                "Spooky",
+                "Christmas"
+              ]
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Response format. Defaults to JSON if not specified.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml",
+                "txt"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "blacklistFlags",
+            "in": "query",
+            "required": false,
+            "description": "Comma or plus-separated list of flags to blacklist. Jokes matching these flags will not be served.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "nsfw,racist,sexist"
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language code following ISO 639-1 / Alpha-2 specification. Returns jokes in the specified language.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            },
+            "example": "en"
+          },
+          {
+            "name": "type",
+            "in": "query",
+            "required": false,
+            "description": "Type of joke to retrieve. If not specified, both types will be returned.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "single",
+                "twopart"
+              ]
+            }
+          },
+          {
+            "name": "contains",
+            "in": "query",
+            "required": false,
+            "description": "Search string - only jokes containing this string will be served (case insensitive). Special characters must be percent-encoded.",
+            "schema": {
+              "type": "string"
+            },
+            "example": "C%23"
+          },
+          {
+            "name": "idRange",
+            "in": "query",
+            "required": false,
+            "description": "ID range of jokes to retrieve. Can be a single ID or a range separated by minus, comma, or plus sign (e.g., '0-55' or '33').",
+            "schema": {
+              "type": "string"
+            },
+            "example": "0-55"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "required": false,
+            "description": "Number of jokes to retrieve in a single request. Maximum is 10, defaults to 1.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 10,
+              "default": 1
+            }
+          },
+          {
+            "name": "safe-mode",
+            "in": "query",
+            "required": false,
+            "description": "If enabled, only safe jokes will be served (no explicit content).",
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with joke(s)",
+            "headers": {
+              "Retry-After": {
+                "description": "Seconds until request budget resets",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Limit": {
+                "description": "Total requests allowed per minute",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Remaining": {
+                "description": "Remaining requests in current budget",
+                "schema": {
+                  "type": "integer"
+                }
+              },
+              "RateLimit-Reset": {
+                "description": "IMF-fixdate timestamp when request budget resets",
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SingleJoke"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TwoPartJoke"
+                    },
+                    {
+                      "$ref": "#/components/schemas/MultipleJokes"
+                    }
+                  ]
+                }
+              },
+              "application/xml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/yaml": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded - too many requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/submit": {
+      "post": {
+        "summary": "Submit a joke",
+        "description": "Submit a new joke to JokeAPI. Note: Joke submissions are manually curated and currently disabled for the foreseeable future. Has a rate limit of 5 requests per minute.",
+        "operationId": "submitJoke",
+        "parameters": [
+          {
+            "name": "dry-run",
+            "in": "query",
+            "required": false,
+            "description": "If present, validates the joke without actually saving it to the API.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Response format. Defaults to JSON if not specified.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml",
+                "txt"
+              ],
+              "default": "json"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/JokeSubmission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Joke submitted successfully or dry-run validation successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Joke submitted successfully"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "description": "13-character UNIX timestamp",
+                      "example": 1234567890123
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid joke submission",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded - maximum 5 requests per minute for submissions",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/info": {
+      "get": {
+        "summary": "Get API information",
+        "description": "Retrieve general information about the JokeAPI, including available categories, languages, flags, and total joke count.",
+        "operationId": "getInfo",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "query",
+            "required": false,
+            "description": "Response format. Defaults to JSON if not specified.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "json",
+                "xml",
+                "yaml",
+                "txt"
+              ],
+              "default": "json"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "required": false,
+            "description": "Language code for system messages following ISO 639-1 / Alpha-2 specification.",
+            "schema": {
+              "type": "string",
+              "default": "en"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with API information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "boolean",
+                      "example": false
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "2.3.3"
+                    },
+                    "jokes": {
+                      "type": "object",
+                      "properties": {
+                        "totalCount": {
+                          "type": "integer",
+                          "example": 1368
+                        },
+                        "categories": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "Programming",
+                            "Misc",
+                            "Dark",
+                            "Pun",
+                            "Spooky",
+                            "Christmas"
+                          ]
+                        },
+                        "flags": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "nsfw",
+                            "religious",
+                            "political",
+                            "racist",
+                            "sexist",
+                            "explicit"
+                          ]
+                        },
+                        "types": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "single",
+                            "twopart"
+                          ]
+                        }
+                      }
+                    },
+                    "formats": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "json",
+                        "xml",
+                        "yaml",
+                        "txt"
+                      ]
+                    },
+                    "jokeLanguages": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "systemLanguages": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SingleJoke": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "example": false
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Programming",
+              "Misc",
+              "Dark",
+              "Pun",
+              "Spooky",
+              "Christmas"
+            ],
+            "example": "Programming"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "single"
+            ],
+            "example": "single"
+          },
+          "joke": {
+            "type": "string",
+            "example": "// This line doesn't actually do anything, but the code stops working when I delete it."
+          },
+          "flags": {
+            "$ref": "#/components/schemas/Flags"
+          },
+          "id": {
+            "type": "integer",
+            "example": 12
+          },
+          "safe": {
+            "type": "boolean",
+            "example": true
+          },
+          "lang": {
+            "type": "string",
+            "example": "en"
+          }
+        },
+        "required": [
+          "error",
+          "category",
+          "type",
+          "joke",
+          "flags",
+          "id",
+          "lang"
+        ]
+      },
+      "TwoPartJoke": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "example": false
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Programming",
+              "Misc",
+              "Dark",
+              "Pun",
+              "Spooky",
+              "Christmas"
+            ],
+            "example": "Programming"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "twopart"
+            ],
+            "example": "twopart"
+          },
+          "setup": {
+            "type": "string",
+            "example": "Why do programmers wear glasses?"
+          },
+          "delivery": {
+            "type": "string",
+            "example": "Because they need to C#"
+          },
+          "flags": {
+            "$ref": "#/components/schemas/Flags"
+          },
+          "id": {
+            "type": "integer",
+            "example": 51
+          },
+          "safe": {
+            "type": "boolean",
+            "example": true
+          },
+          "lang": {
+            "type": "string",
+            "example": "en"
+          }
+        },
+        "required": [
+          "error",
+          "category",
+          "type",
+          "setup",
+          "delivery",
+          "flags",
+          "id",
+          "lang"
+        ]
+      },
+      "MultipleJokes": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "example": false
+          },
+          "amount": {
+            "type": "integer",
+            "example": 5
+          },
+          "jokes": {
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/SingleJoke"
+                },
+                {
+                  "$ref": "#/components/schemas/TwoPartJoke"
+                }
+              ]
+            }
+          }
+        },
+        "required": [
+          "error",
+          "amount",
+          "jokes"
+        ]
+      },
+      "Flags": {
+        "type": "object",
+        "properties": {
+          "nsfw": {
+            "type": "boolean",
+            "description": "Not safe for work",
+            "example": false
+          },
+          "religious": {
+            "type": "boolean",
+            "description": "Contains religious content",
+            "example": false
+          },
+          "political": {
+            "type": "boolean",
+            "description": "Contains political content",
+            "example": false
+          },
+          "racist": {
+            "type": "boolean",
+            "description": "Contains racist content",
+            "example": false
+          },
+          "sexist": {
+            "type": "boolean",
+            "description": "Contains sexist content",
+            "example": false
+          },
+          "explicit": {
+            "type": "boolean",
+            "description": "Contains explicit language",
+            "example": false
+          }
+        },
+        "required": [
+          "nsfw",
+          "religious",
+          "political",
+          "racist",
+          "sexist",
+          "explicit"
+        ]
+      },
+      "JokeSubmission": {
+        "type": "object",
+        "properties": {
+          "formatVersion": {
+            "type": "integer",
+            "example": 3
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "Misc",
+              "Programming",
+              "Dark",
+              "Pun",
+              "Spooky",
+              "Christmas"
+            ],
+            "example": "Programming"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "single",
+              "twopart"
+            ],
+            "example": "single"
+          },
+          "joke": {
+            "type": "string",
+            "description": "The joke content (for single-type jokes only)"
+          },
+          "setup": {
+            "type": "string",
+            "description": "The setup part (for twopart jokes only)"
+          },
+          "delivery": {
+            "type": "string",
+            "description": "The delivery/punchline (for twopart jokes only)"
+          },
+          "flags": {
+            "$ref": "#/components/schemas/Flags"
+          },
+          "lang": {
+            "type": "string",
+            "description": "Language code (ISO 639-1)",
+            "example": "en"
+          }
+        },
+        "required": [
+          "formatVersion",
+          "category",
+          "type",
+          "flags",
+          "lang"
+        ]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "boolean",
+            "example": true
+          },
+          "internalError": {
+            "type": "boolean",
+            "example": false
+          },
+          "code": {
+            "type": "integer",
+            "example": 400
+          },
+          "message": {
+            "type": "string",
+            "example": "Invalid parameter value"
+          },
+          "causedBy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "additionalInfo": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "integer",
+            "description": "13-character UNIX timestamp"
+          }
+        },
+        "required": [
+          "error",
+          "code",
+          "message"
+        ]
+      }
+    }
+  }
+}

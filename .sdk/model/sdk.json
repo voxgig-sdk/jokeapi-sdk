@@ -1,0 +1,703 @@
+{
+  "name": "jokeapi",
+  "origin": "voxgig-sdk",
+  "def": "jokeapi_0.1.0.json",
+  "main": {
+    "kit": {
+      "info": {
+        "contact": {
+          "url": "https://v2.jokeapi.dev/"
+        },
+        "description": "A REST API serving uniformly and well formatted jokes without the need for API token, membership, registration or payment. Supports various filters for customized joke retrieval.",
+        "license": {
+          "name": "MIT",
+          "url": "https://github.com/Sv443/JokeAPI"
+        },
+        "servers": [
+          {
+            "description": "JokeAPI v2 Production Server",
+            "url": "https://v2.jokeapi.dev"
+          }
+        ],
+        "title": "JokeAPI",
+        "version": "2.3.3"
+      },
+      "config": {
+        "auth": {
+          "prefix": "Bearer"
+        },
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "info": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "error",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "format",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "joke",
+              "req": false,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "joke_language",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "system_language",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            },
+            {
+              "name": "version",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "info",
+          "op": {
+            "list": {
+              "name": "list",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "example": "json",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "en",
+                        "kind": "query",
+                        "name": "lang",
+                        "orig": "lang",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/info",
+                  "parts": [
+                    "info"
+                  ],
+                  "select": {
+                    "exist": [
+                      "format",
+                      "lang"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "joke": {
+          "alias": {
+            "field": {}
+          },
+          "name": "joke",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "kind": "param",
+                        "name": "id",
+                        "orig": "category",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ],
+                    "query": [
+                      {
+                        "example": 1,
+                        "kind": "query",
+                        "name": "amount",
+                        "orig": "amount",
+                        "reqd": false,
+                        "type": "`$INTEGER`",
+                        "active": true
+                      },
+                      {
+                        "example": "nsfw,racist,sexist",
+                        "kind": "query",
+                        "name": "blacklist_flag",
+                        "orig": "blacklist_flag",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "C%23",
+                        "kind": "query",
+                        "name": "contain",
+                        "orig": "contain",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "json",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "0-55",
+                        "kind": "query",
+                        "name": "id_range",
+                        "orig": "id_range",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "example": "en",
+                        "kind": "query",
+                        "name": "lang",
+                        "orig": "lang",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "safe_mode",
+                        "orig": "safe_mode",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "kind": "query",
+                        "name": "type",
+                        "orig": "type",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/joke/{category}",
+                  "parts": [
+                    "joke",
+                    "{id}"
+                  ],
+                  "rename": {
+                    "param": {
+                      "category": "id"
+                    }
+                  },
+                  "select": {
+                    "exist": [
+                      "amount",
+                      "blacklist_flag",
+                      "contain",
+                      "format",
+                      "id",
+                      "id_range",
+                      "lang",
+                      "safe_mode",
+                      "type"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "fields": [],
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "submit": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "category",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "delivery",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "error",
+              "req": false,
+              "type": "`$BOOLEAN`",
+              "active": true
+            },
+            {
+              "name": "flag",
+              "req": true,
+              "type": "`$OBJECT`",
+              "active": true
+            },
+            {
+              "name": "format_version",
+              "req": true,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "joke",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "lang",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "message",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "setup",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "timestamp",
+              "req": false,
+              "type": "`$INTEGER`",
+              "active": true
+            },
+            {
+              "name": "type",
+              "req": true,
+              "type": "`$STRING`",
+              "active": true
+            }
+          ],
+          "name": "submit",
+          "op": {
+            "create": {
+              "name": "create",
+              "points": [
+                {
+                  "args": {
+                    "query": [
+                      {
+                        "kind": "query",
+                        "name": "dry_run",
+                        "orig": "dry_run",
+                        "reqd": false,
+                        "type": "`$BOOLEAN`",
+                        "active": true
+                      },
+                      {
+                        "example": "json",
+                        "kind": "query",
+                        "name": "format",
+                        "orig": "format",
+                        "reqd": false,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "POST",
+                  "orig": "/submit",
+                  "parts": [
+                    "submit"
+                  ],
+                  "select": {
+                    "exist": [
+                      "dry_run",
+                      "format"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "active": true,
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "name": "test",
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1",
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            }
+          },
+          "target": {
+            "ts": {
+              "deps": {}
+            },
+            "go": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            }
+          }
+        }
+      },
+      "flow": {
+        "BasicInfoFlow": {
+          "entity": "info",
+          "kind": "basic",
+          "name": "BasicInfoFlow",
+          "step": [
+            {
+              "op": "list",
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "info_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "match": {},
+              "data": {},
+              "input": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicInfoFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicJokeFlow": {
+          "entity": "joke",
+          "kind": "basic",
+          "name": "BasicJokeFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "joke_ref01",
+                "srcdatavar": "joke_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "joke01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-joke_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicJokeFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicSubmitFlow": {
+          "entity": "submit",
+          "kind": "basic",
+          "name": "BasicSubmitFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "submit_ref01"
+              },
+              "op": "create",
+              "active": true,
+              "match": {},
+              "data": {},
+              "spec": [],
+              "valid": []
+            }
+          ],
+          "key$": "BasicSubmitFlow",
+          "active": true,
+          "param": {}
+        }
+      },
+      "target": {
+        "ts": {
+          "title": "TypeScript",
+          "ext": "ts",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "jokeapi"
+          },
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "deps": {
+            "dotenv": {
+              "active": true,
+              "version": "^17.4.2",
+              "kind": "dev"
+            },
+            "typescript": {
+              "active": true,
+              "version": "^5.9.3",
+              "kind": "dev"
+            },
+            "@types/node": {
+              "active": true,
+              "version": "^25.6.0",
+              "kind": "dev"
+            }
+          },
+          "name": "ts",
+          "active": true
+        },
+        "go": {
+          "title": "Golang",
+          "ext": "go",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "jokeapi"
+          },
+          "srcfeature": false,
+          "deps": {
+            "github.com/voxgig/struct": {
+              "active": true,
+              "version": "v0.0.0",
+              "replace": "./utility/struct",
+              "kind": "prod"
+            }
+          },
+          "name": "go",
+          "active": true
+        },
+        "lua": {
+          "title": "Lua",
+          "ext": "lua",
+          "comment": {
+            "line": "--"
+          },
+          "module": {
+            "name": "jokeapi"
+          },
+          "srcfeature": false,
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "version": "2.5",
+              "kind": "prod"
+            }
+          },
+          "name": "lua",
+          "active": true
+        },
+        "php": {
+          "title": "PHP",
+          "ext": "php",
+          "comment": {
+            "line": "//"
+          },
+          "module": {
+            "name": "jokeapi"
+          },
+          "srcfeature": false,
+          "deps": {},
+          "name": "php",
+          "active": true
+        },
+        "py": {
+          "title": "Python",
+          "ext": "py",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "jokeapi"
+          },
+          "srcfeature": false,
+          "deps": {
+            "requests": {
+              "active": true,
+              "version": "2.33",
+              "kind": "prod"
+            }
+          },
+          "name": "py",
+          "active": true
+        },
+        "rb": {
+          "title": "Ruby",
+          "ext": "rb",
+          "comment": {
+            "line": "#"
+          },
+          "module": {
+            "name": "jokeapi"
+          },
+          "srcfeature": false,
+          "deps": {
+            "voxgig-struct": {
+              "active": true,
+              "version": "0.0.10",
+              "kind": "prod"
+            },
+            "json": {
+              "active": true,
+              "version": "0",
+              "kind": "prod"
+            }
+          },
+          "name": "rb",
+          "active": true
+        }
+      },
+      "option": {}
+    },
+    "def": {
+      "desc": ""
+    },
+    "api": {
+      "guide": {},
+      "entity": {}
+    }
+  },
+  "name__orig": "jokeapi",
+  "Name": "Jokeapi",
+  "name_": "jokeapi",
+  "name-": "jokeapi",
+  "NAME": "JOKEAPI"
+}

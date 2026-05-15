@@ -1,0 +1,62 @@
+{
+  "existing": {
+    "submit": {
+      "SUBMIT00": {
+        "category": "s6e",
+        "delivery": "s6f",
+        "error": true,
+        "flag": {},
+        "format_version": "s72",
+        "joke": "s73",
+        "lang": "s74",
+        "message": "s75",
+        "setup": "s76",
+        "timestamp": "s77",
+        "type": "s78"
+      },
+      "SUBMIT01": {
+        "category": "sdc",
+        "delivery": "sdd",
+        "error": true,
+        "flag": {},
+        "format_version": "se0",
+        "joke": "se1",
+        "lang": "se2",
+        "message": "se3",
+        "setup": "se4",
+        "timestamp": "se5",
+        "type": "se6"
+      },
+      "SUBMIT02": {
+        "category": "s14a",
+        "delivery": "s14b",
+        "error": true,
+        "flag": {},
+        "format_version": "s14e",
+        "joke": "s14f",
+        "lang": "s150",
+        "message": "s151",
+        "setup": "s152",
+        "timestamp": "s153",
+        "type": "s154"
+      }
+    }
+  },
+  "new": {
+    "submit": {
+      "submit_ref01": {
+        "category": "s1b8",
+        "delivery": "s1b9",
+        "error": true,
+        "flag": {},
+        "format_version": "s1bc",
+        "joke": "s1bd",
+        "lang": "s1be",
+        "message": "s1bf",
+        "setup": "s1c0",
+        "timestamp": "s1c1",
+        "type": "s1c2"
+      }
+    }
+  }
+}

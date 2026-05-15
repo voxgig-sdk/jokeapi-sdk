@@ -1,0 +1,27 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: info: {
+    path: "/info": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: joke: {
+    path: "/joke/{category}": {
+      rename: param: "category": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: submit: {
+    path: "/submit": {
+      op: create: method: *POST
+    }
+  }
+
+}

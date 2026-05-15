@@ -1,0 +1,27 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://v2.jokeapi.dev/"
+      }
+      description: "A REST API serving uniformly and well formatted jokes without the need for API token, membership, registration or payment. Supports various filters for customized joke retrieval."
+      license: {
+        name: "MIT"
+        url: "https://github.com/Sv443/JokeAPI"
+      }
+      servers: [
+        {
+          description: "JokeAPI v2 Production Server"
+          url: "https://v2.jokeapi.dev"
+        }
+      ]
+      title: "JokeAPI"
+      version: "2.3.3"
+    }
+  }
+}
+
+}

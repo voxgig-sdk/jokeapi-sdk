@@ -1,0 +1,123 @@
+# Entity: joke
+
+main: kit: entity: joke: {
+
+  alias: field: {}
+
+  name: "joke"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "category"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+            query: [
+              {
+                example: 1
+                kind: "query"
+                name: "amount"
+                orig: "amount"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: "nsfw,racist,sexist"
+                kind: "query"
+                name: "blacklist_flag"
+                orig: "blacklist_flag"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "C%23"
+                kind: "query"
+                name: "contain"
+                orig: "contain"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "0-55"
+                kind: "query"
+                name: "id_range"
+                orig: "id_range"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "en"
+                kind: "query"
+                name: "lang"
+                orig: "lang"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "safe_mode"
+                orig: "safe_mode"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                kind: "query"
+                name: "type"
+                orig: "type"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/joke/{category}"
+          parts: [
+            "joke"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              category: "id"
+            }
+          }
+          select: {
+            exist: [
+              "amount"
+              "blacklist_flag"
+              "contain"
+              "format"
+              "id"
+              "id_range"
+              "lang"
+              "safe_mode"
+              "type"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

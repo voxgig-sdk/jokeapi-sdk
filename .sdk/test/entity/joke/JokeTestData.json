@@ -1,0 +1,14 @@
+{
+  "existing": {
+    "joke": {
+      "JOKE00": {},
+      "JOKE01": {},
+      "JOKE02": {}
+    }
+  },
+  "new": {
+    "joke": {
+      "joke_ref01": {}
+    }
+  }
+}

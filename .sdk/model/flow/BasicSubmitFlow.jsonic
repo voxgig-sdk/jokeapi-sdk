@@ -1,0 +1,18 @@
+# BasicSubmitFlow
+
+main: kit: flow: BasicSubmitFlow:
+{
+  entity: "submit",
+  kind: "basic",
+  name: "BasicSubmitFlow",
+  step: [
+    {
+      input: {
+        ref: "submit_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicSubmitFlow"
+}

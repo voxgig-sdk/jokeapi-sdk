@@ -1,0 +1,88 @@
+# Entity: info
+
+main: kit: entity: info: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "error"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "format"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "joke"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "joke_language"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "system_language"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "version"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "info"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "en"
+                kind: "query"
+                name: "lang"
+                orig: "lang"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/info"
+          parts: [
+            "info"
+          ]
+          select: {
+            exist: [
+              "format"
+              "lang"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

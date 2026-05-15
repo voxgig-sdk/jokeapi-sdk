@@ -1,0 +1,112 @@
+# Entity: submit
+
+main: kit: entity: submit: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "category"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "delivery"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "error"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "flag"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "format_version"
+      req: true
+      type: "`$INTEGER`"
+    }
+    {
+      name: "joke"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "lang"
+      req: true
+      type: "`$STRING`"
+    }
+    {
+      name: "message"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "setup"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "type"
+      req: true
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "submit"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "dry_run"
+                orig: "dry_run"
+                reqd: false
+                type: "`$BOOLEAN`"
+              }
+              {
+                example: "json"
+                kind: "query"
+                name: "format"
+                orig: "format"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "POST"
+          orig: "/submit"
+          parts: [
+            "submit"
+          ]
+          select: {
+            exist: [
+              "dry_run"
+              "format"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
