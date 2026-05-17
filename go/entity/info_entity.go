@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/jokeapi-sdk/core"
+	"github.com/voxgig-sdk/jokeapi-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/jokeapi-sdk/go/utility/struct"
 )
 
 type InfoEntity struct {

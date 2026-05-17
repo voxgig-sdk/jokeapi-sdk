@@ -1,9 +1,15 @@
 {
   "existing": {
     "joke": {
-      "JOKE00": {},
-      "JOKE01": {},
-      "JOKE02": {}
+      "JOKE00": {
+        "id": "JOKE00"
+      },
+      "JOKE01": {
+        "id": "JOKE01"
+      },
+      "JOKE02": {
+        "id": "JOKE02"
+      }
     }
   },
   "new": {

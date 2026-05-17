@@ -12,7 +12,8 @@
         "message": "s75",
         "setup": "s76",
         "timestamp": "s77",
-        "type": "s78"
+        "type": "s78",
+        "id": "SUBMIT00"
       },
       "SUBMIT01": {
         "category": "sdc",
@@ -25,7 +26,8 @@
         "message": "se3",
         "setup": "se4",
         "timestamp": "se5",
-        "type": "se6"
+        "type": "se6",
+        "id": "SUBMIT01"
       },
       "SUBMIT02": {
         "category": "s14a",
@@ -38,7 +40,8 @@
         "message": "s151",
         "setup": "s152",
         "timestamp": "s153",
-        "type": "s154"
+        "type": "s154",
+        "id": "SUBMIT02"
       }
     }
   },

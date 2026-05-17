@@ -1,6 +1,6 @@
 package utility
 
-import "github.com/voxgig-sdk/jokeapi-sdk/core"
+import "github.com/voxgig-sdk/jokeapi-sdk/go/core"
 
 func init() {
 	core.UtilityRegistrar = registerAll
