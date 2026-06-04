@@ -92,7 +92,6 @@ def _info_basic_setup(extra):
         "JOKEAPI_TEST_INFO_ENTID": idmap,
         "JOKEAPI_TEST_LIVE": "FALSE",
         "JOKEAPI_TEST_EXPLAIN": "FALSE",
-        "JOKEAPI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +102,6 @@ def _info_basic_setup(extra):
     if env.get("JOKEAPI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JOKEAPI_APIKEY"),
             },
             extra or {},
         ])

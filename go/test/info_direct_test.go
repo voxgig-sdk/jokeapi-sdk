@@ -93,14 +93,12 @@ func infoDirectSetup(mockres any) *infoDirectSetupResult {
 	env := envOverride(map[string]any{
 		"JOKEAPI_TEST_INFO_ENTID": map[string]any{},
 		"JOKEAPI_TEST_LIVE":    "FALSE",
-		"JOKEAPI_APIKEY":       "NONE",
 	})
 
 	live := env["JOKEAPI_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["JOKEAPI_APIKEY"],
 		}
 		client := sdk.NewJokeapiSDK(mergedOpts)
 

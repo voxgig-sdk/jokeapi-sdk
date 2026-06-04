@@ -86,7 +86,6 @@ function info_basic_setup($extra)
         "JOKEAPI_TEST_INFO_ENTID" => $idmap,
         "JOKEAPI_TEST_LIVE" => "FALSE",
         "JOKEAPI_TEST_EXPLAIN" => "FALSE",
-        "JOKEAPI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function info_basic_setup($extra)
     if ($env["JOKEAPI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JOKEAPI_APIKEY"],
             ],
             $extra ?? [],
         ]);

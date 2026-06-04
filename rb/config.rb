@@ -15,9 +15,6 @@ module JokeapiConfig
       },
       "options" => {
         "base" => "https://v2.jokeapi.dev",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },
