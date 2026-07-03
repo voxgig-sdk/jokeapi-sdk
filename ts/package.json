@@ -1,7 +1,23 @@
 {
   "name": "@voxgig-sdk/jokeapi",
   "version": "0.0.1",
-  "description": "DESCRIPTION",
+  "description": "Unofficial generated TypeScript SDK for the Joke public API. Not affiliated with or endorsed by the upstream API provider.",
+  "keywords": [
+    "voxgig",
+    "sdk",
+    "generated-sdk",
+    "openapi",
+    "api-client",
+    "jokeapi"
+  ],
+  "homepage": "https://github.com/voxgig-sdk/jokeapi-sdk#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/voxgig-sdk/jokeapi-sdk.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voxgig-sdk/jokeapi-sdk/issues"
+  },
   "main": "dist/JokeapiSDK.js",
   "type": "commonjs",
   "types": "dist/JokeapiSDK.d.ts",
@@ -14,7 +30,10 @@
     "clean": "rm -rf node_modules yarn.lock package-lock.json",
     "reset": "npm run clean && npm i && npm run build && npm test"
   },
-  "author": "Jokeapi",
+  "author": {
+    "name": "Voxgig",
+    "url": "https://voxgig.com"
+  },
   "license": "MIT",
   "dependencies": {},
   "peerDependencies": {},

@@ -10,7 +10,7 @@ The PHP SDK for the Jokeapi API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/jokeapi-sdk
+composer require voxgig-sdk/jokeapi
 ```
 
 

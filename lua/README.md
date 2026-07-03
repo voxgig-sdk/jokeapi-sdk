@@ -10,7 +10,7 @@ The Lua SDK for the Jokeapi API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install jokeapi-sdk
+luarocks install voxgig-sdk-jokeapi
 ```
 
 If the module is not yet published, add the source directory to

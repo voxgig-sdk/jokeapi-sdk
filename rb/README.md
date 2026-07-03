@@ -10,13 +10,13 @@ The Ruby SDK for the Jokeapi API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install jokeapi-sdk
+gem install voxgig-sdk-jokeapi
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "jokeapi-sdk"
+gem "voxgig-sdk-jokeapi"
 ```
 
 Then run:

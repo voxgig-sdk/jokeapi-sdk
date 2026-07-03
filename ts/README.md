@@ -10,7 +10,7 @@ The TypeScript SDK for the Jokeapi API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install jokeapi
+npm install @voxgig-sdk/jokeapi
 ```
 ## Tutorial: your first API call
 

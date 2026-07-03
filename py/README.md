@@ -10,7 +10,7 @@ The Python SDK for the Jokeapi API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install jokeapi-sdk
+pip install voxgig-sdk-jokeapi
 ```
 
 Or install from source:
