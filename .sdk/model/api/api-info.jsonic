@@ -20,31 +20,7 @@ main: {
       ]
       title: "JokeAPI"
       version: "2.3.3"
-      tagline: "Fetch uniformly formatted jokes across multiple languages and categories with no auth required"
-      homepage: "https://jokeapi.dev"
-      docs_url: "https://v2.jokeapi.dev"
-      license_short: "MIT License"
-      license_md: `- Licensed under the MIT License.
-- Free for personal and commercial use without API key, registration, or payment.
-- Attribution to JokeAPI / Sv443 is appreciated but not required by the project documentation.`
-      about_md: `[JokeAPI](https://v2.jokeapi.dev) is a community REST API that serves jokes in a consistent, well-formatted shape, created and maintained by [Sv443](https://github.com/Sv443). It is open to anyone — no token, membership, registration, or payment is required for standard use.
-
-What you get from the API:
-
-- Jokes drawn from a curated set across categories: \`Programming\`, \`Miscellaneous\`, \`Dark\`, \`Pun\`, \`Spooky\`, \`Christmas\`, plus an \`Any\` selector.
-- Two joke shapes: \`single\` (one-liner) and \`twopart\` (setup + delivery).
-- Filters by category, blacklist flags (e.g. \`nsfw\`, \`religious\`, \`political\`, \`racist\`, \`sexist\`, \`explicit\`), language, joke type, ID range, and free-text search.
-- Multiple response formats: JSON, XML, YAML, or plain text.
-- Supporting endpoints for API info, category list, supported languages, content flags, response formats, and a ping check.
-- A submission endpoint for proposing new jokes.
-
-Operational notes: standard clients are rate-limited to roughly 120 requests per minute, with joke submissions limited more strictly; exceeding limits returns HTTP 429. Higher-volume clients may use an \`Authorization\` header token if whitelisted. The base URL is \`https://v2.jokeapi.dev\`.`
-      entity_desc: {
-        info: "API metadata and supporting lookups — endpoints like `/info`, `/categories`, `/languages`, `/flags`, `/formats`, and `/ping` that describe what the service supports and confirm it is reachable."
-        joke: "The core joke resource — `GET /joke/{category}` returns one or more jokes filtered by category, blacklist flags, language, type, ID, or search string."
-        submit: "Joke submission endpoint — `POST /submit` accepts a candidate joke payload for review by the JokeAPI maintainers."
-      }
-      auth: false
     }
   }
 }
+

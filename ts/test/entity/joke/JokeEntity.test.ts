@@ -111,6 +111,7 @@ function basicSetup(extra?: any) {
     'JOKEAPI_TEST_JOKE_ENTID': idmap,
     'JOKEAPI_TEST_LIVE': 'FALSE',
     'JOKEAPI_TEST_EXPLAIN': 'FALSE',
+    'JOKEAPI_APIKEY': 'NONE',
   })
 
   idmap = env['JOKEAPI_TEST_JOKE_ENTID']
@@ -120,6 +121,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new JokeapiSDK(merge([
       {
+        apikey: env.JOKEAPI_APIKEY,
       },
       extra
     ]))

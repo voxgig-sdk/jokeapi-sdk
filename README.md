@@ -1,23 +1,8 @@
 # Jokeapi SDK
 
-Fetch uniformly formatted jokes across multiple languages and categories with no auth required
+JokeAPI client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About JokeAPI
-
-[JokeAPI](https://v2.jokeapi.dev) is a community REST API that serves jokes in a consistent, well-formatted shape, created and maintained by [Sv443](https://github.com/Sv443). It is open to anyone — no token, membership, registration, or payment is required for standard use.
-
-What you get from the API:
-
-- Jokes drawn from a curated set across categories: `Programming`, `Miscellaneous`, `Dark`, `Pun`, `Spooky`, `Christmas`, plus an `Any` selector.
-- Two joke shapes: `single` (one-liner) and `twopart` (setup + delivery).
-- Filters by category, blacklist flags (e.g. `nsfw`, `religious`, `political`, `racist`, `sexist`, `explicit`), language, joke type, ID range, and free-text search.
-- Multiple response formats: JSON, XML, YAML, or plain text.
-- Supporting endpoints for API info, category list, supported languages, content flags, response formats, and a ping check.
-- A submission endpoint for proposing new jokes.
-
-Operational notes: standard clients are rate-limited to roughly 120 requests per minute, with joke submissions limited more strictly; exceeding limits returns HTTP 429. Higher-volume clients may use an `Authorization` header token if whitelisted. The base URL is `https://v2.jokeapi.dev`.
 
 ## Try it
 
@@ -51,29 +36,31 @@ gem install jokeapi-sdk
 luarocks install jokeapi-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { JokeapiSDK } from 'jokeapi'
 
-const client = new JokeapiSDK({})
+const client = new JokeapiSDK({
+  apikey: process.env.JOKEAPI_APIKEY,
+})
 
 // List all infos
 const infos = await client.Info().list()
+console.log(infos.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Info** | API metadata and supporting lookups — endpoints like `/info`, `/categories`, `/languages`, `/flags`, `/formats`, and `/ping` that describe what the service supports and confirm it is reachable. | `/info` |
-| **Joke** | The core joke resource — `GET /joke/{category}` returns one or more jokes filtered by category, blacklist flags, language, type, ID, or search string. | `/joke/{category}` |
-| **Submit** | Joke submission endpoint — `POST /submit` accepts a candidate joke payload for review by the JokeAPI maintainers. | `/submit` |
+| **Info** |  | `/info` |
+| **Joke** |  | `/joke/{category}` |
+| **Submit** |  | `/submit` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,12 +102,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from jokeapi_sdk import JokeapiSDK
 
-client = JokeapiSDK({})
+client = JokeapiSDK({
+    "apikey": os.environ.get("JOKEAPI_APIKEY"),
+})
 
 # List all infos
-infos, err = client.Info(None).list(None, None)
+infos, err = client.Info().list()
+print(infos)
 ```
 
 ### PHP
@@ -129,10 +120,13 @@ infos, err = client.Info(None).list(None, None)
 <?php
 require_once 'jokeapi_sdk.php';
 
-$client = new JokeapiSDK([]);
+$client = new JokeapiSDK([
+    "apikey" => getenv("JOKEAPI_APIKEY"),
+]);
 
 // List all infos
-[$infos, $err] = $client->Info(null)->list(null, null);
+[$infos, $err] = $client->Info()->list();
+print_r($infos);
 ```
 
 ### Golang
@@ -140,10 +134,13 @@ $client = new JokeapiSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/jokeapi-sdk/go"
 
-client := sdk.NewJokeapiSDK(map[string]any{})
+client := sdk.NewJokeapiSDK(map[string]any{
+    "apikey": os.Getenv("JOKEAPI_APIKEY"),
+})
 
 // List all infos
 infos, err := client.Info(nil).List(nil, nil)
+fmt.Println(infos)
 ```
 
 ### Ruby
@@ -151,10 +148,13 @@ infos, err := client.Info(nil).List(nil, nil)
 ```ruby
 require_relative "Jokeapi_sdk"
 
-client = JokeapiSDK.new({})
+client = JokeapiSDK.new({
+  "apikey" => ENV["JOKEAPI_APIKEY"],
+})
 
 # List all infos
-infos, err = client.Info(nil).list(nil, nil)
+infos, err = client.Info().list
+puts infos
 ```
 
 ### Lua
@@ -162,10 +162,13 @@ infos, err = client.Info(nil).list(nil, nil)
 ```lua
 local sdk = require("jokeapi_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("JOKEAPI_APIKEY"),
+})
 
 -- List all infos
-local infos, err = client:Info(nil):list(nil, nil)
+local infos, err = client:Info():list()
+print(infos)
 ```
 
 ## Unit testing in offline mode
@@ -184,25 +187,21 @@ const result = await client.Info().load({ id: 'test01' })
 ### Python
 
 ```python
-client = JokeapiSDK.test(None, None)
-result, err = client.Info(None).load(
-    {"id": "test01"}, None
-)
+client = JokeapiSDK.test()
+result, err = client.Info().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = JokeapiSDK::test(null, null);
-[$result, $err] = $client->Info(null)->load(
-    ["id" => "test01"], null
-);
+$client = JokeapiSDK::test();
+[$result, $err] = $client->Info()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Info(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -211,19 +210,15 @@ result, err := client.Info(nil).Load(
 ### Ruby
 
 ```ruby
-client = JokeapiSDK.test(nil, nil)
-result, err = client.Info(nil).load(
-  { "id" => "test01" }, nil
-)
+client = JokeapiSDK.test
+result, err = client.Info().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Info(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Info():load({ id = "test01" })
 ```
 
 ## How it works
@@ -327,15 +322,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the JokeAPI
-
-- Upstream: [https://jokeapi.dev](https://jokeapi.dev)
-- API docs: [https://v2.jokeapi.dev](https://v2.jokeapi.dev)
-
-- Licensed under the MIT License.
-- Free for personal and commercial use without API key, registration, or payment.
-- Attribution to JokeAPI / Sv443 is appreciated but not required by the project documentation.
 
 ---
 

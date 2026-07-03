@@ -61,12 +61,14 @@ def _info_direct_setup(mockres):
     env = runner.env_override({
         "JOKEAPI_TEST_INFO_ENTID": {},
         "JOKEAPI_TEST_LIVE": "FALSE",
+        "JOKEAPI_APIKEY": "NONE",
     })
 
     live = env.get("JOKEAPI_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("JOKEAPI_APIKEY"),
         }
         client = JokeapiSDK(merged_opts)
         return {

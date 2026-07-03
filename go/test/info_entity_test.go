@@ -119,6 +119,7 @@ func infoBasicSetup(extra map[string]any) *entityTestSetup {
 		"JOKEAPI_TEST_INFO_ENTID": idmap,
 		"JOKEAPI_TEST_LIVE":      "FALSE",
 		"JOKEAPI_TEST_EXPLAIN":   "FALSE",
+		"JOKEAPI_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["JOKEAPI_TEST_INFO_ENTID"])
@@ -129,6 +130,7 @@ func infoBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["JOKEAPI_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["JOKEAPI_APIKEY"],
 			},
 			extra,
 		})
