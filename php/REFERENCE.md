@@ -93,7 +93,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## InfoEntity
 
 ```php
-$info = $client->info();
+$info = $client->Info();
 ```
 
 ### Fields
@@ -114,7 +114,7 @@ $info = $client->info();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->info()->list([]);
+$results = $client->Info()->list([]);
 ```
 
 ### Common Methods
@@ -150,7 +150,7 @@ Return the entity name.
 ## JokeEntity
 
 ```php
-$joke = $client->joke();
+$joke = $client->Joke();
 ```
 
 ### Operations
@@ -160,7 +160,7 @@ $joke = $client->joke();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->joke()->load(["id" => "joke_id"]);
+$result = $client->Joke()->load(["id" => "joke_id"]);
 ```
 
 ### Common Methods
@@ -196,7 +196,7 @@ Return the entity name.
 ## SubmitEntity
 
 ```php
-$submit = $client->submit();
+$submit = $client->Submit();
 ```
 
 ### Fields
@@ -222,7 +222,7 @@ $submit = $client->submit();
 Create a new entity with the given data. Throws on error.
 
 ```php
-$result = $client->submit()->create([
+$result = $client->Submit()->create([
   "category" => /* `$STRING` */,
   "flag" => /* `$OBJECT` */,
   "format_version" => /* `$INTEGER` */,

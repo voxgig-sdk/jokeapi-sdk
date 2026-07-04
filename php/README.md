@@ -29,18 +29,16 @@ require_once 'jokeapi_sdk.php';
 $client = new JokeapiSDK();
 ```
 
-### 2. List infos
+### 2. List info records
 
 ```php
 try {
-    $result = $client->info()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Info records — iterate directly.
+    $infos = $client->Info()->list();
+    foreach ($infos as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = JokeapiSDK::test();
+$client = JokeapiSDK::test([
+    "entity" => ["info" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->info()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$info = $client->Info()->load(["id" => "test01"]);
+print_r($info);
 ```
 
 ### Use a custom fetch function
@@ -171,7 +173,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `get_utility` | `(): Utility` | Copy of the SDK utility object. |
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
-| `Info` | `($data): InfoEntity` | Create a Info entity instance. |
+| `Info` | `($data): InfoEntity` | Create an Info entity instance. |
 | `Joke` | `($data): JokeEntity` | Create a Joke entity instance. |
 | `Submit` | `($data): SubmitEntity` | Create a Submit entity instance. |
 
@@ -264,7 +266,7 @@ API path: `/submit`
 
 ### Info
 
-Create an instance: `const info = client.info`
+Create an instance: `$info = $client->Info();`
 
 #### Operations
 
@@ -285,14 +287,15 @@ Create an instance: `const info = client.info`
 
 #### Example: List
 
-```ts
-const infos = await client.info.list()
+```php
+// list() returns an array of Info records (throws on error).
+$infos = $client->Info()->list();
 ```
 
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `$joke = $client->Joke();`
 
 #### Operations
 
@@ -302,14 +305,15 @@ Create an instance: `const joke = client.joke`
 
 #### Example: Load
 
-```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+```php
+// load() returns the bare Joke record (throws on error).
+$joke = $client->Joke()->load(["id" => "joke_id"]);
 ```
 
 
 ### Submit
 
-Create an instance: `const submit = client.submit`
+Create an instance: `$submit = $client->Submit();`
 
 #### Operations
 
@@ -335,14 +339,14 @@ Create an instance: `const submit = client.submit`
 
 #### Example: Create
 
-```ts
-const submit = await client.submit.create({
-  category: /* `$STRING` */,
-  flag: /* `$OBJECT` */,
-  format_version: /* `$INTEGER` */,
-  lang: /* `$STRING` */,
-  type: /* `$STRING` */,
-})
+```php
+$submit = $client->Submit()->create([
+    "category" => null, // `$STRING`
+    "flag" => null, // `$OBJECT`
+    "format_version" => null, // `$INTEGER`
+    "lang" => null, // `$STRING`
+    "type" => null, // `$STRING`
+]);
 ```
 
 
@@ -417,7 +421,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$info = $client->info();
+$info = $client->Info();
 $info->load(["id" => "example_id"]);
 
 // $info->dataGet() now returns the loaded info data

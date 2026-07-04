@@ -28,15 +28,15 @@ import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
 const client = new JokeapiSDK()
 ```
 
-### 2. List infos
+### 2. List info records
+
+`list()` resolves to an array of Info objects — iterate it directly:
 
 ```ts
-const result = await client.info.list()
+const infos = await client.Info().list()
 
-if (result.ok) {
-  for (const item of result.data) {
-    console.log(item.id, item.name)
-  }
+for (const info of infos) {
+  console.log(info)
 }
 ```
 
@@ -54,6 +54,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -82,9 +85,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = JokeapiSDK.test()
 
-const result = await client.info.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const info = await client.Info().load({ id: 'test01' })
+// info is a bare entity populated with mock response data
+console.log(info)
 ```
 
 You can also use the instance method:
@@ -99,7 +102,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.info
+const entity = client.Info()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -177,7 +180,7 @@ new JokeapiSDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `Info(data?)` | `InfoEntity` | Create a Info entity instance. |
+| `Info(data?)` | `InfoEntity` | Create an Info entity instance. |
 | `Joke(data?)` | `JokeEntity` | Create a Joke entity instance. |
 | `Submit(data?)` | `SubmitEntity` | Create a Submit entity instance. |
 | `tester(testopts?, sdkopts?)` | `JokeapiSDK` | Create a test-mode client instance. |
@@ -196,29 +199,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): JokeapiSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -301,7 +305,7 @@ API path: `/submit`
 
 ### Info
 
-Create an instance: `const info = client.info`
+Create an instance: `const info = client.Info()`
 
 #### Operations
 
@@ -323,13 +327,13 @@ Create an instance: `const info = client.info`
 #### Example: List
 
 ```ts
-const infos = await client.info.list()
+const infos = await client.Info().list()
 ```
 
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `const joke = client.Joke()`
 
 #### Operations
 
@@ -340,13 +344,13 @@ Create an instance: `const joke = client.joke`
 #### Example: Load
 
 ```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+const joke = await client.Joke().load({ id: 'joke_id' })
 ```
 
 
 ### Submit
 
-Create an instance: `const submit = client.submit`
+Create an instance: `const submit = client.Submit()`
 
 #### Operations
 
@@ -373,7 +377,7 @@ Create an instance: `const submit = client.submit`
 #### Example: Create
 
 ```ts
-const submit = await client.submit.create({
+const submit = await client.Submit().create({
   category: /* `$STRING` */,
   flag: /* `$OBJECT` */,
   format_version: /* `$INTEGER` */,
@@ -450,7 +454,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const info = client.info
+const info = client.Info()
 await info.load({ id: "example_id" })
 
 // info.data() now returns the loaded info data

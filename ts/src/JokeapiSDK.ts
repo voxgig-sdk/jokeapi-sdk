@@ -206,42 +206,21 @@ class JokeapiSDK {
 
 
 
-  _info?: InfoEntity
-
-  // Idiomatic facade: `client.info.list()` / `client.info.load({ id })`.
-  get info(): InfoEntity {
-    return (this._info ??= new InfoEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.info` instead. */
+  // Entity access: `client.Info().list()` / `client.Info().load({ id })`.
   Info(data?: any) {
     const self = this
     return new InfoEntity(self,data)
   }
 
 
-  _joke?: JokeEntity
-
-  // Idiomatic facade: `client.joke.list()` / `client.joke.load({ id })`.
-  get joke(): JokeEntity {
-    return (this._joke ??= new JokeEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.joke` instead. */
+  // Entity access: `client.Joke().list()` / `client.Joke().load({ id })`.
   Joke(data?: any) {
     const self = this
     return new JokeEntity(self,data)
   }
 
 
-  _submit?: SubmitEntity
-
-  // Idiomatic facade: `client.submit.list()` / `client.submit.load({ id })`.
-  get submit(): SubmitEntity {
-    return (this._submit ??= new SubmitEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.submit` instead. */
+  // Entity access: `client.Submit().list()` / `client.Submit().load({ id })`.
   Submit(data?: any) {
     const self = this
     return new SubmitEntity(self,data)

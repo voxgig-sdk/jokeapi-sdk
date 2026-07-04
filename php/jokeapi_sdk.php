@@ -233,10 +233,10 @@ class JokeapiSDK
 
     private $_info = null;
 
-    // Idiomatic facade: $client->info()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Info() (PHP method
-    // names are case-insensitive).
-    public function info($data = null)
+    // Canonical facade: $client->Info()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->info()
+    // resolves here too.
+    public function Info($data = null)
     {
         require_once __DIR__ . '/entity/info_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class JokeapiSDK
 
     private $_joke = null;
 
-    // Idiomatic facade: $client->joke()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Joke() (PHP method
-    // names are case-insensitive).
-    public function joke($data = null)
+    // Canonical facade: $client->Joke()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->joke()
+    // resolves here too.
+    public function Joke($data = null)
     {
         require_once __DIR__ . '/entity/joke_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class JokeapiSDK
 
     private $_submit = null;
 
-    // Idiomatic facade: $client->submit()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Submit() (PHP method
-    // names are case-insensitive).
-    public function submit($data = null)
+    // Canonical facade: $client->Submit()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->submit()
+    // resolves here too.
+    public function Submit($data = null)
     {
         require_once __DIR__ . '/entity/submit_entity.php';
         if ($data === null) {

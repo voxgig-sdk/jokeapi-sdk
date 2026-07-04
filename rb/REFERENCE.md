@@ -94,7 +94,7 @@ same parameters as `direct()`. Raises on error.
 ## InfoEntity
 
 ```ruby
-info = client.info
+info = client.Info
 ```
 
 ### Fields
@@ -115,7 +115,7 @@ info = client.info
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.info.list(nil)
+results = client.Info.list(nil)
 ```
 
 ### Common Methods
@@ -151,7 +151,7 @@ Return the entity name.
 ## JokeEntity
 
 ```ruby
-joke = client.joke
+joke = client.Joke
 ```
 
 ### Operations
@@ -161,7 +161,7 @@ joke = client.joke
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.joke.load({ "id" => "joke_id" })
+result = client.Joke.load({ "id" => "joke_id" })
 ```
 
 ### Common Methods
@@ -197,7 +197,7 @@ Return the entity name.
 ## SubmitEntity
 
 ```ruby
-submit = client.submit
+submit = client.Submit
 ```
 
 ### Fields
@@ -223,7 +223,7 @@ submit = client.submit
 Create a new entity with the given data. Raises on error.
 
 ```ruby
-result = client.submit.create({
+result = client.Submit.create({
   "category" => # `$STRING`,
   "flag" => # `$OBJECT`,
   "format_version" => # `$INTEGER`,

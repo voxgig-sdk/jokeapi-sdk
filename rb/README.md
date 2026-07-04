@@ -28,16 +28,14 @@ require_relative "Jokeapi_sdk"
 client = JokeapiSDK.new
 ```
 
-### 2. List infos
+### 2. List info records
 
 ```ruby
 begin
-  result = client.info.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Info records — iterate directly.
+  infos = client.Info.list
+  infos.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = JokeapiSDK.test
+client = JokeapiSDK.test({
+  "entity" => { "info" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.info.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+info = client.Info.load({ "id" => "test01" })
+puts info
 ```
 
 ### Use a custom fetch function
@@ -167,7 +169,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
-| `Info` | `(data) -> InfoEntity` | Create a Info entity instance. |
+| `Info` | `(data) -> InfoEntity` | Create an Info entity instance. |
 | `Joke` | `(data) -> JokeEntity` | Create a Joke entity instance. |
 | `Submit` | `(data) -> SubmitEntity` | Create a Submit entity instance. |
 
@@ -259,7 +261,7 @@ API path: `/submit`
 
 ### Info
 
-Create an instance: `const info = client.info`
+Create an instance: `info = client.Info`
 
 #### Operations
 
@@ -280,14 +282,15 @@ Create an instance: `const info = client.info`
 
 #### Example: List
 
-```ts
-const infos = await client.info.list()
+```ruby
+# list returns an Array of Info records (raises on error).
+infos = client.Info.list
 ```
 
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `joke = client.Joke`
 
 #### Operations
 
@@ -297,14 +300,15 @@ Create an instance: `const joke = client.joke`
 
 #### Example: Load
 
-```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+```ruby
+# load returns the bare Joke record (raises on error).
+joke = client.Joke.load({ "id" => "joke_id" })
 ```
 
 
 ### Submit
 
-Create an instance: `const submit = client.submit`
+Create an instance: `submit = client.Submit`
 
 #### Operations
 
@@ -330,13 +334,13 @@ Create an instance: `const submit = client.submit`
 
 #### Example: Create
 
-```ts
-const submit = await client.submit.create({
-  category: /* `$STRING` */,
-  flag: /* `$OBJECT` */,
-  format_version: /* `$INTEGER` */,
-  lang: /* `$STRING` */,
-  type: /* `$STRING` */,
+```ruby
+submit = client.Submit.create({
+  "category" => nil, # `$STRING`
+  "flag" => nil, # `$OBJECT`
+  "format_version" => nil, # `$INTEGER`
+  "lang" => nil, # `$STRING`
+  "type" => nil, # `$STRING`
 })
 ```
 
@@ -412,7 +416,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-info = client.info
+info = client.Info
 info.load({ "id" => "example_id" })
 
 # info.data_get now returns the loaded info data

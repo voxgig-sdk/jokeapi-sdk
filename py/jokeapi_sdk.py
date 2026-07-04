@@ -220,57 +220,27 @@ class JokeapiSDK:
         }
 
 
-    @property
-    def info(self):
-        """Idiomatic facade: client.info.list() / client.info.load({"id": ...})."""
-        from entity.info_entity import InfoEntity
-        cached = getattr(self, "_info", None)
-        if cached is None:
-            cached = InfoEntity(self, None)
-            self._info = cached
-        return cached
-
-    def Info(self, data=None):
-        # Deprecated: use client.info instead.
+    def Info(self, data=None) -> "InfoEntity":
+        """Entity factory: client.Info().list({}) / client.Info().load({"id": ...})."""
         from entity.info_entity import InfoEntity
         return InfoEntity(self, data)
 
 
-    @property
-    def joke(self):
-        """Idiomatic facade: client.joke.list() / client.joke.load({"id": ...})."""
-        from entity.joke_entity import JokeEntity
-        cached = getattr(self, "_joke", None)
-        if cached is None:
-            cached = JokeEntity(self, None)
-            self._joke = cached
-        return cached
-
-    def Joke(self, data=None):
-        # Deprecated: use client.joke instead.
+    def Joke(self, data=None) -> "JokeEntity":
+        """Entity factory: client.Joke().list({}) / client.Joke().load({"id": ...})."""
         from entity.joke_entity import JokeEntity
         return JokeEntity(self, data)
 
 
-    @property
-    def submit(self):
-        """Idiomatic facade: client.submit.list() / client.submit.load({"id": ...})."""
-        from entity.submit_entity import SubmitEntity
-        cached = getattr(self, "_submit", None)
-        if cached is None:
-            cached = SubmitEntity(self, None)
-            self._submit = cached
-        return cached
-
-    def Submit(self, data=None):
-        # Deprecated: use client.submit instead.
+    def Submit(self, data=None) -> "SubmitEntity":
+        """Entity factory: client.Submit().list({}) / client.Submit().load({"id": ...})."""
         from entity.submit_entity import SubmitEntity
         return SubmitEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "JokeapiSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -290,3 +260,11 @@ class JokeapiSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.info_entity import InfoEntity
+    from entity.joke_entity import JokeEntity
+    from entity.submit_entity import SubmitEntity

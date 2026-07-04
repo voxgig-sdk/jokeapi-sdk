@@ -133,7 +133,7 @@ Alias for `JokeapiSDK.test()`.
 ## InfoEntity
 
 ```ts
-const info = client.info
+const info = client.Info()
 ```
 
 ### Fields
@@ -154,7 +154,7 @@ const info = client.info
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.info.list()
+const results = await client.Info().list()
 ```
 
 ### Common Methods
@@ -188,7 +188,7 @@ Return a copy of the entity options.
 ## JokeEntity
 
 ```ts
-const joke = client.joke
+const joke = client.Joke()
 ```
 
 ### Operations
@@ -198,7 +198,7 @@ const joke = client.joke
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.joke.load({ id: 'joke_id' })
+const result = await client.Joke().load({ id: 'joke_id' })
 ```
 
 ### Common Methods
@@ -232,7 +232,7 @@ Return a copy of the entity options.
 ## SubmitEntity
 
 ```ts
-const submit = client.submit
+const submit = client.Submit()
 ```
 
 ### Fields
@@ -258,7 +258,7 @@ const submit = client.submit
 Create a new entity with the given data.
 
 ```ts
-const result = await client.submit.create({
+const result = await client.Submit().create({
   category: /* `$STRING` */,
   flag: /* `$OBJECT` */,
   format_version: /* `$INTEGER` */,

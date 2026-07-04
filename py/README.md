@@ -31,14 +31,16 @@ from jokeapi_sdk import JokeapiSDK
 client = JokeapiSDK()
 ```
 
-### 2. List infos
+### 2. List info records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.info.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    infos = client.Info().list({})
+    for info in infos:
+        print(info)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = JokeapiSDK.test()
 
-result = client.info.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+info = client.Info().load({"id": "test01"})
+# info contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -163,7 +166,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
-| `Info` | `(data) -> InfoEntity` | Create a Info entity instance. |
+| `Info` | `(data) -> InfoEntity` | Create an Info entity instance. |
 | `Joke` | `(data) -> JokeEntity` | Create a Joke entity instance. |
 | `Submit` | `(data) -> SubmitEntity` | Create a Submit entity instance. |
 
@@ -256,7 +259,7 @@ API path: `/submit`
 
 ### Info
 
-Create an instance: `const info = client.info`
+Create an instance: `info = client.Info()`
 
 #### Operations
 
@@ -277,14 +280,14 @@ Create an instance: `const info = client.info`
 
 #### Example: List
 
-```ts
-const infos = await client.info.list()
+```python
+infos = client.Info().list({})
 ```
 
 
 ### Joke
 
-Create an instance: `const joke = client.joke`
+Create an instance: `joke = client.Joke()`
 
 #### Operations
 
@@ -294,14 +297,14 @@ Create an instance: `const joke = client.joke`
 
 #### Example: Load
 
-```ts
-const joke = await client.joke.load({ id: 'joke_id' })
+```python
+joke = client.Joke().load({"id": "joke_id"})
 ```
 
 
 ### Submit
 
-Create an instance: `const submit = client.submit`
+Create an instance: `submit = client.Submit()`
 
 #### Operations
 
@@ -327,13 +330,13 @@ Create an instance: `const submit = client.submit`
 
 #### Example: Create
 
-```ts
-const submit = await client.submit.create({
-  category: /* `$STRING` */,
-  flag: /* `$OBJECT` */,
-  format_version: /* `$INTEGER` */,
-  lang: /* `$STRING` */,
-  type: /* `$STRING` */,
+```python
+submit = client.Submit().create({
+    "category": ...,  # `$STRING`
+    "flag": ...,  # `$OBJECT`
+    "format_version": ...,  # `$INTEGER`
+    "lang": ...,  # `$STRING`
+    "type": ...,  # `$STRING`
 })
 ```
 
@@ -408,7 +411,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-info = client.info
+info = client.Info()
 info.load({"id": "example_id"})
 
 # info.data_get() now returns the loaded info data

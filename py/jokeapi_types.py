@@ -4,69 +4,70 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Info:
-    error: Optional[bool] = None
-    format: Optional[list] = None
-    joke: Optional[dict] = None
-    joke_language: Optional[list] = None
-    system_language: Optional[list] = None
-    version: Optional[str] = None
+class Info(TypedDict, total=False):
+    error: bool
+    format: list
+    joke: dict
+    joke_language: list
+    system_language: list
+    version: str
 
 
-@dataclass
-class InfoListMatch:
-    error: Optional[bool] = None
-    format: Optional[list] = None
-    joke: Optional[dict] = None
-    joke_language: Optional[list] = None
-    system_language: Optional[list] = None
-    version: Optional[str] = None
+class InfoListMatch(TypedDict, total=False):
+    error: bool
+    format: list
+    joke: dict
+    joke_language: list
+    system_language: list
+    version: str
 
 
-@dataclass
-class Joke:
+class Joke(TypedDict):
     pass
 
 
-@dataclass
-class JokeLoadMatch:
+class JokeLoadMatch(TypedDict):
     id: str
 
 
-@dataclass
-class Submit:
+class SubmitRequired(TypedDict):
     category: str
     flag: dict
     format_version: int
     lang: str
     type: str
-    delivery: Optional[str] = None
-    error: Optional[bool] = None
-    joke: Optional[str] = None
-    message: Optional[str] = None
-    setup: Optional[str] = None
-    timestamp: Optional[int] = None
 
 
-@dataclass
-class SubmitCreateData:
-    category: Optional[str] = None
-    delivery: Optional[str] = None
-    error: Optional[bool] = None
-    flag: Optional[dict] = None
-    format_version: Optional[int] = None
-    joke: Optional[str] = None
-    lang: Optional[str] = None
-    message: Optional[str] = None
-    setup: Optional[str] = None
-    timestamp: Optional[int] = None
-    type: Optional[str] = None
+class Submit(SubmitRequired, total=False):
+    delivery: str
+    error: bool
+    joke: str
+    message: str
+    setup: str
+    timestamp: int
 
+
+class SubmitCreateData(TypedDict, total=False):
+    category: str
+    delivery: str
+    error: bool
+    flag: dict
+    format_version: int
+    joke: str
+    lang: str
+    message: str
+    setup: str
+    timestamp: int
+    type: str

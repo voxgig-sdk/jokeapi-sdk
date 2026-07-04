@@ -91,7 +91,7 @@ same parameters as `direct()`.
 ## InfoEntity
 
 ```lua
-local info = client:info(nil)
+local info = client:Info(nil)
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ local info = client:info(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:info():list()
+local results, err = client:Info():list()
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## JokeEntity
 
 ```lua
-local joke = client:joke(nil)
+local joke = client:Joke(nil)
 ```
 
 ### Operations
@@ -158,7 +158,7 @@ local joke = client:joke(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:joke():load({ id = "joke_id" })
+local result, err = client:Joke():load({ id = "joke_id" })
 ```
 
 ### Common Methods
@@ -194,7 +194,7 @@ Return the entity name.
 ## SubmitEntity
 
 ```lua
-local submit = client:submit(nil)
+local submit = client:Submit(nil)
 ```
 
 ### Fields
@@ -220,7 +220,7 @@ local submit = client:submit(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:submit():create({
+local result, err = client:Submit():create({
   category = --[[ `$STRING` ]],
   flag = --[[ `$OBJECT` ]],
   format_version = --[[ `$INTEGER` ]],

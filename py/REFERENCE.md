@@ -88,7 +88,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## InfoEntity
 
 ```python
-info = client.info
+info = client.Info()
 ```
 
 ### Fields
@@ -109,7 +109,9 @@ info = client.info
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.info.list({})
+results = client.Info().list({})
+for info in results:
+    print(info)
 ```
 
 ### Common Methods
@@ -144,7 +146,7 @@ Return the entity name.
 ## JokeEntity
 
 ```python
-joke = client.joke
+joke = client.Joke()
 ```
 
 ### Operations
@@ -154,7 +156,7 @@ joke = client.joke
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.joke.load({"id": "joke_id"})
+result = client.Joke().load({"id": "joke_id"})
 ```
 
 ### Common Methods
@@ -189,7 +191,7 @@ Return the entity name.
 ## SubmitEntity
 
 ```python
-submit = client.submit
+submit = client.Submit()
 ```
 
 ### Fields
@@ -215,12 +217,12 @@ submit = client.submit
 Create a new entity with the given data. Returns the created entity data and raises on error.
 
 ```python
-result = client.submit.create({
-    "category": # `$STRING`,
-    "flag": # `$OBJECT`,
-    "format_version": # `$INTEGER`,
-    "lang": # `$STRING`,
-    "type": # `$STRING`,
+result = client.Submit().create({
+    "category": ...,  # `$STRING`
+    "flag": ...,  # `$OBJECT`
+    "format_version": ...,  # `$INTEGER`
+    "lang": ...,  # `$STRING`
+    "type": ...,  # `$STRING`
 })
 ```
 

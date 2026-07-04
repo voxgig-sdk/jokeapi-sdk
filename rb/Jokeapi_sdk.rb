@@ -208,39 +208,21 @@ class JokeapiSDK
   end
 
 
-  # Idiomatic facade: client.info.list / client.info.load({ "id" => ... })
-  def info
-    require_relative 'entity/info_entity'
-    @info ||= InfoEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.info instead.
+  # Canonical facade: client.Info.list / client.Info.load({ "id" => ... })
   def Info(data = nil)
     require_relative 'entity/info_entity'
     InfoEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.joke.list / client.joke.load({ "id" => ... })
-  def joke
-    require_relative 'entity/joke_entity'
-    @joke ||= JokeEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.joke instead.
+  # Canonical facade: client.Joke.list / client.Joke.load({ "id" => ... })
   def Joke(data = nil)
     require_relative 'entity/joke_entity'
     JokeEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.submit.list / client.submit.load({ "id" => ... })
-  def submit
-    require_relative 'entity/submit_entity'
-    @submit ||= SubmitEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.submit instead.
+  # Canonical facade: client.Submit.list / client.Submit.load({ "id" => ... })
   def Submit(data = nil)
     require_relative 'entity/submit_entity'
     SubmitEntity.new(self, data)

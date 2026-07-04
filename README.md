@@ -26,9 +26,11 @@ import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
 
 const client = new JokeapiSDK()
 
-// List all infos
-const infos = await client.info.list()
-console.log(infos.data)
+// List all infos (returns Info[])
+const infos = await client.Info().list()
+for (const info of infos) {
+  console.log(info)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -85,9 +87,10 @@ from jokeapi_sdk import JokeapiSDK
 
 client = JokeapiSDK()
 
-# List all infos
-infos = client.info.list()
-print(infos)
+# List all infos (returns a list, raises on error)
+infos = client.Info().list({})
+for info in infos:
+    print(info)
 ```
 
 ### PHP
@@ -98,8 +101,8 @@ require_once 'jokeapi_sdk.php';
 
 $client = new JokeapiSDK();
 
-// List all infos (throws on error)
-$infos = $client->info()->list();
+// List all infos (returns an array; throws on error)
+$infos = $client->Info()->list();
 print_r($infos);
 ```
 
@@ -122,8 +125,8 @@ require_relative "Jokeapi_sdk"
 
 client = JokeapiSDK.new
 
-# List all infos
-infos = client.info.list
+# List all infos (returns an Array; raises on error)
+infos = client.Info.list
 puts infos
 ```
 
@@ -135,7 +138,7 @@ local sdk = require("jokeapi_sdk")
 local client = sdk.new()
 
 -- List all infos
-local infos, err = client:info():list()
+local infos, err = client:Info():list()
 print(infos)
 ```
 
@@ -148,22 +151,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = JokeapiSDK.test()
-const result = await client.info.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const info = await client.Info().load({ id: 'test01' })
+// info is a bare Info populated with mock data
+console.log(info)
 ```
 
 ### Python
 
 ```python
 client = JokeapiSDK.test()
-result = client.info.load({"id": "test01"})
+info = client.Info().load({"id": "test01"})
+print(info)
 ```
 
 ### PHP
 
 ```php
-$client = JokeapiSDK::test();
-$result = $client->info()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = JokeapiSDK::test([
+    "entity" => ["info" => ["test01" => ["id" => "test01"]]],
+]);
+$info = $client->Info()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -178,15 +186,18 @@ result, err := client.Info(nil).Load(
 ### Ruby
 
 ```ruby
-client = JokeapiSDK.test
-result = client.info.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = JokeapiSDK.test({
+  "entity" => { "info" => { "test01" => { "id" => "test01" } } },
+})
+info = client.Info.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:info():load({ id = "test01" })
+local result, err = client:Info():load({ id = "test01" })
 ```
 
 ## How it works
@@ -234,6 +245,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 
