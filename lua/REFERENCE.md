@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -92,7 +91,7 @@ same parameters as `direct()`.
 ## InfoEntity
 
 ```lua
-local info = client:Info(nil)
+local info = client:info(nil)
 ```
 
 ### Fields
@@ -113,7 +112,7 @@ local info = client:Info(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Info():list()
+local results, err = client:info():list()
 ```
 
 ### Common Methods
@@ -149,7 +148,7 @@ Return the entity name.
 ## JokeEntity
 
 ```lua
-local joke = client:Joke(nil)
+local joke = client:joke(nil)
 ```
 
 ### Operations
@@ -159,7 +158,7 @@ local joke = client:Joke(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Joke():load({ id = "joke_id" })
+local result, err = client:joke():load({ id = "joke_id" })
 ```
 
 ### Common Methods
@@ -195,7 +194,7 @@ Return the entity name.
 ## SubmitEntity
 
 ```lua
-local submit = client:Submit(nil)
+local submit = client:submit(nil)
 ```
 
 ### Fields
@@ -221,7 +220,7 @@ local submit = client:Submit(nil)
 Create a new entity with the given data.
 
 ```lua
-local result, err = client:Submit():create({
+local result, err = client:submit():create({
   category = --[[ `$STRING` ]],
   flag = --[[ `$OBJECT` ]],
   format_version = --[[ `$INTEGER` ]],

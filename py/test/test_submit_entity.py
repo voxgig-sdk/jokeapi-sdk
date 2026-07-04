@@ -44,9 +44,7 @@ class TestSubmitEntity:
         submit_ref01_data = helpers.to_map(vs.getprop(
             vs.getpath(setup["data"], "new.submit"), "submit_ref01"))
 
-        submit_ref01_data_result, err = submit_ref01_ent.create(submit_ref01_data, None)
-        assert err is None
-        submit_ref01_data = helpers.to_map(submit_ref01_data_result)
+        submit_ref01_data = helpers.to_map(submit_ref01_ent.create(submit_ref01_data, None))
         assert submit_ref01_data is not None
 
 
@@ -87,7 +85,6 @@ def _submit_basic_setup(extra):
         "JOKEAPI_TEST_SUBMIT_ENTID": idmap,
         "JOKEAPI_TEST_LIVE": "FALSE",
         "JOKEAPI_TEST_EXPLAIN": "FALSE",
-        "JOKEAPI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -98,7 +95,6 @@ def _submit_basic_setup(extra):
     if env.get("JOKEAPI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JOKEAPI_APIKEY"),
             },
             extra or {},
         ])

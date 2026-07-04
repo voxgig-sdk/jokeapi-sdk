@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch InfoListMatch
+---@param ctrl? table
+---@return Info[]
+---@return string? err
 function InfoEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://v2.jokeapi.dev',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -180,7 +176,8 @@ class Config {
                     "name": "id",
                     "orig": "category",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ],
                 "query": [

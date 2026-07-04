@@ -43,8 +43,7 @@ class InfoEntityTest < Minitest::Test
     info_ref01_ent = client.Info(nil)
     info_ref01_match = {}
 
-    info_ref01_list_result, err = info_ref01_ent.list(info_ref01_match, nil)
-    assert_nil err
+    info_ref01_list_result = info_ref01_ent.list(info_ref01_match, nil)
     assert info_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def info_basic_setup(extra)
     "JOKEAPI_TEST_INFO_ENTID" => idmap,
     "JOKEAPI_TEST_LIVE" => "FALSE",
     "JOKEAPI_TEST_EXPLAIN" => "FALSE",
-    "JOKEAPI_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def info_basic_setup(extra)
   if env["JOKEAPI_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["JOKEAPI_APIKEY"],
       },
       extra || {},
     ])

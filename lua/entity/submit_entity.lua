@@ -83,6 +83,10 @@ end
 
 
 
+---@param reqdata SubmitCreateData
+---@param ctrl? table
+---@return Submit
+---@return string? err
 function SubmitEntity:create(reqdata, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

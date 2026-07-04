@@ -9,9 +9,12 @@ The TypeScript SDK for the Jokeapi API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/jokeapi
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/jokeapi-sdk/releases](https://github.com/voxgig-sdk/jokeapi-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { JokeapiSDK } from 'jokeapi'
+import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
 
-const client = new JokeapiSDK({
-  apikey: process.env.JOKEAPI_APIKEY,
-})
+const client = new JokeapiSDK()
 ```
 
 ### 2. List infos
 
 ```ts
-const result = await client.Info().list()
+const result = await client.info.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = JokeapiSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.info.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new JokeapiSDK({ apikey: '...' })
+const client = new JokeapiSDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.info
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new JokeapiSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -136,7 +136,6 @@ Create a `.env.local` file at the project root:
 
 ```
 JOKEAPI_TEST_LIVE=TRUE
-JOKEAPI_APIKEY=<your-key>
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new JokeapiSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new JokeapiSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -304,7 +301,7 @@ API path: `/submit`
 
 ### Info
 
-Create an instance: `const info = client.Info()`
+Create an instance: `const info = client.info`
 
 #### Operations
 
@@ -326,13 +323,13 @@ Create an instance: `const info = client.Info()`
 #### Example: List
 
 ```ts
-const infos = await client.Info().list()
+const infos = await client.info.list()
 ```
 
 
 ### Joke
 
-Create an instance: `const joke = client.Joke()`
+Create an instance: `const joke = client.joke`
 
 #### Operations
 
@@ -343,13 +340,13 @@ Create an instance: `const joke = client.Joke()`
 #### Example: Load
 
 ```ts
-const joke = await client.Joke().load({ id: 'joke_id' })
+const joke = await client.joke.load({ id: 'joke_id' })
 ```
 
 
 ### Submit
 
-Create an instance: `const submit = client.Submit()`
+Create an instance: `const submit = client.submit`
 
 #### Operations
 
@@ -376,7 +373,7 @@ Create an instance: `const submit = client.Submit()`
 #### Example: Create
 
 ```ts
-const submit = await client.Submit().create({
+const submit = await client.submit.create({
   category: /* `$STRING` */,
   flag: /* `$OBJECT` */,
   format_version: /* `$INTEGER` */,
@@ -443,7 +440,7 @@ jokeapi/
 Import the SDK from the package root:
 
 ```ts
-import { JokeapiSDK } from 'jokeapi'
+import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
 ```
 
 ### Entity state
@@ -453,11 +450,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const info = client.info
+await info.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// info.data() now returns the loaded info data
+// info.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

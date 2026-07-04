@@ -50,8 +50,7 @@ class InfoEntityTest extends TestCase
         $info_ref01_ent = $client->Info(null);
         $info_ref01_match = [];
 
-        [$info_ref01_list_result, $err] = $info_ref01_ent->list($info_ref01_match, null);
-        $this->assertNull($err);
+        $info_ref01_list_result = $info_ref01_ent->list($info_ref01_match, null);
         $this->assertIsArray($info_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function info_basic_setup($extra)
         "JOKEAPI_TEST_INFO_ENTID" => $idmap,
         "JOKEAPI_TEST_LIVE" => "FALSE",
         "JOKEAPI_TEST_EXPLAIN" => "FALSE",
-        "JOKEAPI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function info_basic_setup($extra)
     if ($env["JOKEAPI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JOKEAPI_APIKEY"],
             ],
             $extra ?? [],
         ]);

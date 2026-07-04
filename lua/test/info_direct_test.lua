@@ -63,14 +63,12 @@ function info_direct_setup(mockres)
   local env = runner.env_override({
     ["JOKEAPI_TEST_INFO_ENTID"] = {},
     ["JOKEAPI_TEST_LIVE"] = "FALSE",
-    ["JOKEAPI_APIKEY"] = "NONE",
   })
 
   local live = env["JOKEAPI_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["JOKEAPI_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

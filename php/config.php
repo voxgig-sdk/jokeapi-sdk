@@ -20,9 +20,6 @@ class JokeapiConfig
             ],
             "options" => [
                 "base" => "https://v2.jokeapi.dev",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -152,6 +149,7 @@ class JokeapiConfig
                         'orig' => 'category',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                     'query' => [

@@ -50,8 +50,7 @@ class TestInfoEntity:
         info_ref01_ent = client.Info(None)
         info_ref01_match = {}
 
-        info_ref01_list_result, err = info_ref01_ent.list(info_ref01_match, None)
-        assert err is None
+        info_ref01_list_result = info_ref01_ent.list(info_ref01_match, None)
         assert isinstance(info_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _info_basic_setup(extra):
         "JOKEAPI_TEST_INFO_ENTID": idmap,
         "JOKEAPI_TEST_LIVE": "FALSE",
         "JOKEAPI_TEST_EXPLAIN": "FALSE",
-        "JOKEAPI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _info_basic_setup(extra):
     if env.get("JOKEAPI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JOKEAPI_APIKEY"),
             },
             extra or {},
         ])

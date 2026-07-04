@@ -245,16 +245,25 @@ func (sdk *JokeapiSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Info returns a Info entity bound to this client.
+// Idiomatic usage: client.Info(nil).List(nil, nil) or
+// client.Info(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JokeapiSDK) Info(data map[string]any) JokeapiEntity {
 	return NewInfoEntityFunc(sdk, data)
 }
 
 
+// Joke returns a Joke entity bound to this client.
+// Idiomatic usage: client.Joke(nil).List(nil, nil) or
+// client.Joke(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JokeapiSDK) Joke(data map[string]any) JokeapiEntity {
 	return NewJokeEntityFunc(sdk, data)
 }
 
 
+// Submit returns a Submit entity bound to this client.
+// Idiomatic usage: client.Submit(nil).List(nil, nil) or
+// client.Submit(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *JokeapiSDK) Submit(data map[string]any) JokeapiEntity {
 	return NewSubmitEntityFunc(sdk, data)
 }

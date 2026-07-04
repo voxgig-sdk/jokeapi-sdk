@@ -49,8 +49,7 @@ class TestJokeEntity:
         # LOAD
         joke_ref01_ent = client.Joke(None)
         joke_ref01_match_dt0 = {}
-        joke_ref01_data_dt0_loaded, err = joke_ref01_ent.load(joke_ref01_match_dt0, None)
-        assert err is None
+        joke_ref01_data_dt0_loaded = joke_ref01_ent.load(joke_ref01_match_dt0, None)
         assert joke_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _joke_basic_setup(extra):
         "JOKEAPI_TEST_JOKE_ENTID": idmap,
         "JOKEAPI_TEST_LIVE": "FALSE",
         "JOKEAPI_TEST_EXPLAIN": "FALSE",
-        "JOKEAPI_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _joke_basic_setup(extra):
     if env.get("JOKEAPI_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("JOKEAPI_APIKEY"),
             },
             extra or {},
         ])

@@ -85,6 +85,27 @@ func (e *SubmitEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an Submit; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *SubmitEntity) DataTyped(data ...Submit) Submit {
+	if len(data) > 0 {
+		return typedFrom[Submit](e.Data(asMap(data[0])))
+	}
+	return typedFrom[Submit](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through Submit (all fields
+// optional at the wire level).
+func (e *SubmitEntity) MatchTyped(match ...Submit) Submit {
+	if len(match) > 0 {
+		return typedFrom[Submit](e.Match(asMap(match[0])))
+	}
+	return typedFrom[Submit](e.Match())
+}
+
 func (e *SubmitEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -116,6 +137,17 @@ func (e *SubmitEntity) Create(reqdata map[string]any, ctrl map[string]any) (any,
 			}
 		}
 	})
+}
+
+// CreateTyped is the statically-typed variant of Create: it takes an
+// SubmitCreateData and returns an Submit. It delegates to the untyped
+// Create (identical runtime) and converts at the typed boundary.
+func (e *SubmitEntity) CreateTyped(reqdata SubmitCreateData, ctrl map[string]any) (Submit, error) {
+	res, err := e.Create(asMap(reqdata), ctrl)
+	if err != nil {
+		return Submit{}, err
+	}
+	return typedFrom[Submit](res), nil
 }
 
 

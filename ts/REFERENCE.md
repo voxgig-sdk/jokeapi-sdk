@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -134,7 +133,7 @@ Alias for `JokeapiSDK.test()`.
 ## InfoEntity
 
 ```ts
-const info = client.Info()
+const info = client.info
 ```
 
 ### Fields
@@ -155,7 +154,7 @@ const info = client.Info()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Info().list()
+const results = await client.info.list()
 ```
 
 ### Common Methods
@@ -189,7 +188,7 @@ Return a copy of the entity options.
 ## JokeEntity
 
 ```ts
-const joke = client.Joke()
+const joke = client.joke
 ```
 
 ### Operations
@@ -199,7 +198,7 @@ const joke = client.Joke()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Joke().load({ id: 'joke_id' })
+const result = await client.joke.load({ id: 'joke_id' })
 ```
 
 ### Common Methods
@@ -233,7 +232,7 @@ Return a copy of the entity options.
 ## SubmitEntity
 
 ```ts
-const submit = client.Submit()
+const submit = client.submit
 ```
 
 ### Fields
@@ -259,7 +258,7 @@ const submit = client.Submit()
 Create a new entity with the given data.
 
 ```ts
-const result = await client.Submit().create({
+const result = await client.submit.create({
   category: /* `$STRING` */,
   flag: /* `$OBJECT` */,
   format_version: /* `$INTEGER` */,

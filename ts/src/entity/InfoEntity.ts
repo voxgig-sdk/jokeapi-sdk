@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Info,
+  InfoListMatch,
+} from '../JokeapiTypes'
 
 // TODO: needs Entity superclass
-class InfoEntity extends JokeapiEntityBase {
+class InfoEntity extends JokeapiEntityBase<Info> {
 
   constructor(client: JokeapiSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class InfoEntity extends JokeapiEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: InfoListMatch, ctrl?: Control): Promise<Info[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class InfoEntity extends JokeapiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Info[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

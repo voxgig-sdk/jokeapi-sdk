@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:info():list() / client:info():load({ id = ... })
+function JokeapiSDK:info(data)
+  local EntityMod = require("entity.info_entity")
+  if data == nil then
+    if self._info == nil then
+      self._info = EntityMod.new(self, nil)
+    end
+    return self._info
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:info() instead.
 function JokeapiSDK:Info(data)
   local EntityMod = require("entity.info_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:joke():list() / client:joke():load({ id = ... })
+function JokeapiSDK:joke(data)
+  local EntityMod = require("entity.joke_entity")
+  if data == nil then
+    if self._joke == nil then
+      self._joke = EntityMod.new(self, nil)
+    end
+    return self._joke
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:joke() instead.
 function JokeapiSDK:Joke(data)
   local EntityMod = require("entity.joke_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:submit():list() / client:submit():load({ id = ... })
+function JokeapiSDK:submit(data)
+  local EntityMod = require("entity.submit_entity")
+  if data == nil then
+    if self._submit == nil then
+      self._submit = EntityMod.new(self, nil)
+    end
+    return self._submit
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:submit() instead.
 function JokeapiSDK:Submit(data)
   local EntityMod = require("entity.submit_entity")
   return EntityMod.new(self, data)

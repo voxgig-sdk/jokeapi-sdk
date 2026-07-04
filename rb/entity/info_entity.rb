@@ -45,6 +45,7 @@ class InfoEntity
     end
   end
 
+  # @return [Info, Hash] the current Info data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class InfoEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Info fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class InfoEntity
   
 
   
+  # List Info items matching the given filter.
+  #
+  # @param reqmatch [InfoListMatch, Hash, nil] match filter (any subset of Info fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Info>, Array] the matching Info items; raises JokeapiError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

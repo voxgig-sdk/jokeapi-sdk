@@ -43,8 +43,7 @@ class SubmitEntityTest extends TestCase
         $submit_ref01_data = Helpers::to_map(Vs::getprop(
             Vs::getpath($setup["data"], "new.submit"), "submit_ref01"));
 
-        [$submit_ref01_data_result, $err] = $submit_ref01_ent->create($submit_ref01_data, null);
-        $this->assertNull($err);
+        $submit_ref01_data_result = $submit_ref01_ent->create($submit_ref01_data, null);
         $submit_ref01_data = Helpers::to_map($submit_ref01_data_result);
         $this->assertNotNull($submit_ref01_data);
 
@@ -80,7 +79,6 @@ function submit_basic_setup($extra)
         "JOKEAPI_TEST_SUBMIT_ENTID" => $idmap,
         "JOKEAPI_TEST_LIVE" => "FALSE",
         "JOKEAPI_TEST_EXPLAIN" => "FALSE",
-        "JOKEAPI_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -92,7 +90,6 @@ function submit_basic_setup($extra)
     if ($env["JOKEAPI_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["JOKEAPI_APIKEY"],
             ],
             $extra ?? [],
         ]);

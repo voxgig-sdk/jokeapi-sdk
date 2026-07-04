@@ -45,6 +45,7 @@ class SubmitEntity
     end
   end
 
+  # @return [Submit, Hash] the current Submit data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class SubmitEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Submit fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -67,6 +69,11 @@ class SubmitEntity
   
 
   
+  # Create a new Submit.
+  #
+  # @param reqdata [SubmitCreateData, Hash, nil] body data
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Submit, Hash] the created Submit; raises JokeapiError on failure
   def create(reqdata, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
