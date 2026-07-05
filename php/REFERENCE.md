@@ -53,11 +53,11 @@ Create a new `JokeEntity` instance. Pass `null` for no initial data.
 
 Create a new `SubmitEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): JokeapiUtility`
 
 Return a copy of the SDK utility object.
 
@@ -100,38 +100,38 @@ $info = $client->Info();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$BOOLEAN`` | No |  |
-| `format` | ``$ARRAY`` | No |  |
-| `joke` | ``$OBJECT`` | No |  |
-| `joke_language` | ``$ARRAY`` | No |  |
-| `system_language` | ``$ARRAY`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `error` | `bool` | No |  |
+| `format` | `array` | No |  |
+| `joke` | `array` | No |  |
+| `joke_language` | `array` | No |  |
+| `system_language` | `array` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Info()->list([]);
+$results = $client->Info()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -140,7 +140,7 @@ Set the entity match criteria.
 Create a new `InfoEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -165,19 +165,19 @@ $result = $client->Joke()->load(["id" => "joke_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -186,7 +186,7 @@ Set the entity match criteria.
 Create a new `JokeEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -203,17 +203,17 @@ $submit = $client->Submit();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `delivery` | ``$STRING`` | No |  |
-| `error` | ``$BOOLEAN`` | No |  |
-| `flag` | ``$OBJECT`` | Yes |  |
-| `format_version` | ``$INTEGER`` | Yes |  |
-| `joke` | ``$STRING`` | No |  |
-| `lang` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `setup` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `delivery` | `string` | No |  |
+| `error` | `bool` | No |  |
+| `flag` | `array` | Yes |  |
+| `format_version` | `int` | Yes |  |
+| `joke` | `string` | No |  |
+| `lang` | `string` | Yes |  |
+| `message` | `string` | No |  |
+| `setup` | `string` | No |  |
+| `timestamp` | `int` | No |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -223,29 +223,29 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->Submit()->create([
-  "category" => /* `$STRING` */,
-  "flag" => /* `$OBJECT` */,
-  "format_version" => /* `$INTEGER` */,
-  "lang" => /* `$STRING` */,
-  "type" => /* `$STRING` */,
+  "category" => null, // string
+  "flag" => null, // array
+  "format_version" => null, // int
+  "lang" => null, // string
+  "type" => null, // string
 ]);
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -254,7 +254,7 @@ Set the entity match criteria.
 Create a new `SubmitEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

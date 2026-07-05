@@ -17,8 +17,6 @@ go build -o jokeapi-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./jokeapi-cli list info
-./jokeapi-cli load 1 info
-./jokeapi-cli load '{id:1}' info
 
 # REPL
 ./jokeapi-cli
@@ -30,7 +28,6 @@ go build -o jokeapi-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

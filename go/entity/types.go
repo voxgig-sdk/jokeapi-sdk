@@ -18,8 +18,7 @@ type Info struct {
 	Version *string `json:"version,omitempty"`
 }
 
-// InfoListMatch mirrors the info fields as an all-optional match
-// filter (Go analog of Partial<Info>).
+// InfoListMatch is the typed request payload for Info.ListTyped.
 type InfoListMatch struct {
 	Error *bool `json:"error,omitempty"`
 	Format *[]any `json:"format,omitempty"`
@@ -53,20 +52,19 @@ type Submit struct {
 	Type string `json:"type"`
 }
 
-// SubmitCreateData mirrors the submit fields as an all-optional match
-// filter (Go analog of Partial<Submit>).
+// SubmitCreateData is the typed request payload for Submit.CreateTyped.
 type SubmitCreateData struct {
-	Category *string `json:"category,omitempty"`
+	Category string `json:"category"`
 	Delivery *string `json:"delivery,omitempty"`
 	Error *bool `json:"error,omitempty"`
-	Flag *map[string]any `json:"flag,omitempty"`
-	FormatVersion *int `json:"format_version,omitempty"`
+	Flag map[string]any `json:"flag"`
+	FormatVersion int `json:"format_version"`
 	Joke *string `json:"joke,omitempty"`
-	Lang *string `json:"lang,omitempty"`
+	Lang string `json:"lang"`
 	Message *string `json:"message,omitempty"`
 	Setup *string `json:"setup,omitempty"`
 	Timestamp *int `json:"timestamp,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Type string `json:"type"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

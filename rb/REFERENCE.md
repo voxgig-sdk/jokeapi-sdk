@@ -8,7 +8,7 @@ Complete API reference for the Jokeapi Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'jokeapi_sdk'
+require_relative 'Jokeapi_sdk'
 
 client = JokeapiSDK.new(options)
 ```
@@ -101,21 +101,21 @@ info = client.Info
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$BOOLEAN`` | No |  |
-| `format` | ``$ARRAY`` | No |  |
-| `joke` | ``$OBJECT`` | No |  |
-| `joke_language` | ``$ARRAY`` | No |  |
-| `system_language` | ``$ARRAY`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `error` | `Boolean` | No |  |
+| `format` | `Array` | No |  |
+| `joke` | `Hash` | No |  |
+| `joke_language` | `Array` | No |  |
+| `system_language` | `Array` | No |  |
+| `version` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Info.list(nil)
+results = client.Info.list
 ```
 
 ### Common Methods
@@ -204,17 +204,17 @@ submit = client.Submit
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `delivery` | ``$STRING`` | No |  |
-| `error` | ``$BOOLEAN`` | No |  |
-| `flag` | ``$OBJECT`` | Yes |  |
-| `format_version` | ``$INTEGER`` | Yes |  |
-| `joke` | ``$STRING`` | No |  |
-| `lang` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `setup` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
+| `category` | `String` | Yes |  |
+| `delivery` | `String` | No |  |
+| `error` | `Boolean` | No |  |
+| `flag` | `Hash` | Yes |  |
+| `format_version` | `Integer` | Yes |  |
+| `joke` | `String` | No |  |
+| `lang` | `String` | Yes |  |
+| `message` | `String` | No |  |
+| `setup` | `String` | No |  |
+| `timestamp` | `Integer` | No |  |
+| `type` | `String` | Yes |  |
 
 ### Operations
 
@@ -224,11 +224,11 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Submit.create({
-  "category" => # `$STRING`,
-  "flag" => # `$OBJECT`,
-  "format_version" => # `$INTEGER`,
-  "lang" => # `$STRING`,
-  "type" => # `$STRING`,
+  "category" => "example", # String
+  "flag" => {}, # Hash
+  "format_version" => 1, # Integer
+  "lang" => "example", # String
+  "type" => "example", # String
 })
 ```
 

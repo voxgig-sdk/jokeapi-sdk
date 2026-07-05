@@ -23,7 +23,7 @@ class Info
     public ?string $version = null;
 }
 
-/** Match filter for Info#list (any subset of Info fields). */
+/** Request payload for Info#list. */
 class InfoListMatch
 {
     public ?bool $error = null;
@@ -61,19 +61,19 @@ class Submit
     public string $type;
 }
 
-/** Match filter for Submit#create (any subset of Submit fields). */
+/** Request payload for Submit#create. */
 class SubmitCreateData
 {
-    public ?string $category = null;
+    public string $category;
     public ?string $delivery = null;
     public ?bool $error = null;
-    public ?array $flag = null;
-    public ?int $format_version = null;
+    public array $flag;
+    public int $format_version;
     public ?string $joke = null;
-    public ?string $lang = null;
+    public string $lang;
     public ?string $message = null;
     public ?string $setup = null;
     public ?int $timestamp = null;
-    public ?string $type = null;
+    public string $type;
 }
 

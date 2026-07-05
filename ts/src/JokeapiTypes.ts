@@ -14,7 +14,14 @@ export interface Info {
   version?: string
 }
 
-export type InfoListMatch = Partial<Info>
+export interface InfoListMatch {
+  error?: boolean
+  format?: any[]
+  joke?: Record<string, any>
+  joke_language?: any[]
+  system_language?: any[]
+  version?: string
+}
 
 export interface Joke {
 }
@@ -37,5 +44,17 @@ export interface Submit {
   type: string
 }
 
-export type SubmitCreateData = Partial<Submit>
+export interface SubmitCreateData {
+  category: string
+  delivery?: string
+  error?: boolean
+  flag: Record<string, any>
+  format_version: number
+  joke?: string
+  lang: string
+  message?: string
+  setup?: string
+  timestamp?: number
+  type: string
+}
 

@@ -37,7 +37,7 @@ Info = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Info#list (any subset of Info fields).
+# Request payload for Info#list.
 #
 # @!attribute [rw] error
 #   @return [Boolean, nil]
@@ -128,10 +128,10 @@ Submit = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Submit#create (any subset of Submit fields).
+# Request payload for Submit#create.
 #
 # @!attribute [rw] category
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] delivery
 #   @return [String, nil]
@@ -140,16 +140,16 @@ Submit = Struct.new(
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] flag
-#   @return [Hash, nil]
+#   @return [Hash]
 #
 # @!attribute [rw] format_version
-#   @return [Integer, nil]
+#   @return [Integer]
 #
 # @!attribute [rw] joke
 #   @return [String, nil]
 #
 # @!attribute [rw] lang
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] message
 #   @return [String, nil]
@@ -161,7 +161,7 @@ Submit = Struct.new(
 #   @return [Integer, nil]
 #
 # @!attribute [rw] type
-#   @return [String, nil]
+#   @return [String]
 SubmitCreateData = Struct.new(
   :category,
   :delivery,

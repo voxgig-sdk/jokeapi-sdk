@@ -221,19 +221,19 @@ class JokeapiSDK:
 
 
     def Info(self, data=None) -> "InfoEntity":
-        """Entity factory: client.Info().list({}) / client.Info().load({"id": ...})."""
+        """Entity factory: client.Info().list() / client.Info().load({"id": ...})."""
         from entity.info_entity import InfoEntity
         return InfoEntity(self, data)
 
 
     def Joke(self, data=None) -> "JokeEntity":
-        """Entity factory: client.Joke().list({}) / client.Joke().load({"id": ...})."""
+        """Entity factory: client.Joke().list() / client.Joke().load({"id": ...})."""
         from entity.joke_entity import JokeEntity
         return JokeEntity(self, data)
 
 
     def Submit(self, data=None) -> "SubmitEntity":
-        """Entity factory: client.Submit().list({}) / client.Submit().load({"id": ...})."""
+        """Entity factory: client.Submit().list() / client.Submit().load({"id": ...})."""
         from entity.submit_entity import SubmitEntity
         return SubmitEntity(self, data)
 

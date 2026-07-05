@@ -98,12 +98,12 @@ local info = client:Info(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$BOOLEAN`` | No |  |
-| `format` | ``$ARRAY`` | No |  |
-| `joke` | ``$OBJECT`` | No |  |
-| `joke_language` | ``$ARRAY`` | No |  |
-| `system_language` | ``$ARRAY`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `error` | `boolean` | No |  |
+| `format` | `table` | No |  |
+| `joke` | `table` | No |  |
+| `joke_language` | `table` | No |  |
+| `system_language` | `table` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -201,17 +201,17 @@ local submit = client:Submit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `delivery` | ``$STRING`` | No |  |
-| `error` | ``$BOOLEAN`` | No |  |
-| `flag` | ``$OBJECT`` | Yes |  |
-| `format_version` | ``$INTEGER`` | Yes |  |
-| `joke` | ``$STRING`` | No |  |
-| `lang` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `setup` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `delivery` | `string` | No |  |
+| `error` | `boolean` | No |  |
+| `flag` | `table` | Yes |  |
+| `format_version` | `number` | Yes |  |
+| `joke` | `string` | No |  |
+| `lang` | `string` | Yes |  |
+| `message` | `string` | No |  |
+| `setup` | `string` | No |  |
+| `timestamp` | `number` | No |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -221,11 +221,11 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:Submit():create({
-  category = --[[ `$STRING` ]],
-  flag = --[[ `$OBJECT` ]],
-  format_version = --[[ `$INTEGER` ]],
-  lang = --[[ `$STRING` ]],
-  type = --[[ `$STRING` ]],
+  category = --[[ string ]],
+  flag = --[[ table ]],
+  format_version = --[[ number ]],
+  lang = --[[ string ]],
+  type = --[[ string ]],
 })
 ```
 

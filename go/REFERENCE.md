@@ -105,12 +105,12 @@ info := client.Info(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$BOOLEAN`` | No |  |
-| `format` | ``$ARRAY`` | No |  |
-| `joke` | ``$OBJECT`` | No |  |
-| `joke_language` | ``$ARRAY`` | No |  |
-| `system_language` | ``$ARRAY`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `error` | `bool` | No |  |
+| `format` | `[]any` | No |  |
+| `joke` | `map[string]any` | No |  |
+| `joke_language` | `[]any` | No |  |
+| `system_language` | `[]any` | No |  |
+| `version` | `string` | No |  |
 
 ### Operations
 
@@ -196,17 +196,17 @@ submit := client.Submit(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `delivery` | ``$STRING`` | No |  |
-| `error` | ``$BOOLEAN`` | No |  |
-| `flag` | ``$OBJECT`` | Yes |  |
-| `format_version` | ``$INTEGER`` | Yes |  |
-| `joke` | ``$STRING`` | No |  |
-| `lang` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `setup` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
+| `category` | `string` | Yes |  |
+| `delivery` | `string` | No |  |
+| `error` | `bool` | No |  |
+| `flag` | `map[string]any` | Yes |  |
+| `format_version` | `int` | Yes |  |
+| `joke` | `string` | No |  |
+| `lang` | `string` | Yes |  |
+| `message` | `string` | No |  |
+| `setup` | `string` | No |  |
+| `timestamp` | `int` | No |  |
+| `type` | `string` | Yes |  |
 
 ### Operations
 
@@ -216,11 +216,11 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Submit(nil).Create(map[string]any{
-    "category": /* `$STRING` */,
-    "flag": /* `$OBJECT` */,
-    "format_version": /* `$INTEGER` */,
-    "lang": /* `$STRING` */,
-    "type": /* `$STRING` */,
+    "category": /* string */,
+    "flag": /* map[string]any */,
+    "format_version": /* int */,
+    "lang": /* string */,
+    "type": /* string */,
 }, nil)
 ```
 

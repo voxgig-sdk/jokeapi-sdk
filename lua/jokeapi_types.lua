@@ -15,6 +15,12 @@
 ---@field version? string
 
 ---@class InfoListMatch
+---@field error? boolean
+---@field format? table
+---@field joke? table
+---@field joke_language? table
+---@field system_language? table
+---@field version? string
 
 ---@class Joke
 
@@ -35,6 +41,17 @@
 ---@field type string
 
 ---@class SubmitCreateData
+---@field category string
+---@field delivery? string
+---@field error? boolean
+---@field flag table
+---@field format_version number
+---@field joke? string
+---@field lang string
+---@field message? string
+---@field setup? string
+---@field timestamp? number
+---@field type string
 
 local M = {}
 

@@ -95,21 +95,21 @@ info = client.Info()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `error` | ``$BOOLEAN`` | No |  |
-| `format` | ``$ARRAY`` | No |  |
-| `joke` | ``$OBJECT`` | No |  |
-| `joke_language` | ``$ARRAY`` | No |  |
-| `system_language` | ``$ARRAY`` | No |  |
-| `version` | ``$STRING`` | No |  |
+| `error` | `bool` | No |  |
+| `format` | `list` | No |  |
+| `joke` | `dict` | No |  |
+| `joke_language` | `list` | No |  |
+| `system_language` | `list` | No |  |
+| `version` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Info().list({})
+results = client.Info().list()
 for info in results:
     print(info)
 ```
@@ -198,17 +198,17 @@ submit = client.Submit()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | Yes |  |
-| `delivery` | ``$STRING`` | No |  |
-| `error` | ``$BOOLEAN`` | No |  |
-| `flag` | ``$OBJECT`` | Yes |  |
-| `format_version` | ``$INTEGER`` | Yes |  |
-| `joke` | ``$STRING`` | No |  |
-| `lang` | ``$STRING`` | Yes |  |
-| `message` | ``$STRING`` | No |  |
-| `setup` | ``$STRING`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `type` | ``$STRING`` | Yes |  |
+| `category` | `str` | Yes |  |
+| `delivery` | `str` | No |  |
+| `error` | `bool` | No |  |
+| `flag` | `dict` | Yes |  |
+| `format_version` | `int` | Yes |  |
+| `joke` | `str` | No |  |
+| `lang` | `str` | Yes |  |
+| `message` | `str` | No |  |
+| `setup` | `str` | No |  |
+| `timestamp` | `int` | No |  |
+| `type` | `str` | Yes |  |
 
 ### Operations
 
@@ -218,11 +218,11 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.Submit().create({
-    "category": ...,  # `$STRING`
-    "flag": ...,  # `$OBJECT`
-    "format_version": ...,  # `$INTEGER`
-    "lang": ...,  # `$STRING`
-    "type": ...,  # `$STRING`
+    "category": "example",  # str
+    "flag": {},  # dict
+    "format_version": 1,  # int
+    "lang": "example",  # str
+    "type": "example",  # str
 })
 ```
 

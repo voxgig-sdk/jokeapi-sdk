@@ -59,15 +59,18 @@ class Submit(SubmitRequired, total=False):
     timestamp: int
 
 
-class SubmitCreateData(TypedDict, total=False):
+class SubmitCreateDataRequired(TypedDict):
     category: str
-    delivery: str
-    error: bool
     flag: dict
     format_version: int
-    joke: str
     lang: str
+    type: str
+
+
+class SubmitCreateData(SubmitCreateDataRequired, total=False):
+    delivery: str
+    error: bool
+    joke: str
     message: str
     setup: str
     timestamp: int
-    type: str
