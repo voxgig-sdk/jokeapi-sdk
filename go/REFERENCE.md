@@ -99,6 +99,7 @@ same parameters as `Direct()`.
 
 ```go
 info := client.Info(nil)
+fmt.Println(info.GetName()) // "info"
 ```
 
 ### Fields
@@ -120,6 +121,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Info(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -150,6 +155,7 @@ Return the entity name.
 
 ```go
 joke := client.Joke(nil)
+fmt.Println(joke.GetName()) // "joke"
 ```
 
 ### Operations
@@ -160,6 +166,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Joke(nil).Load(map[string]any{"id": "joke_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -190,6 +200,7 @@ Return the entity name.
 
 ```go
 submit := client.Submit(nil)
+fmt.Println(submit.GetName()) // "submit"
 ```
 
 ### Fields
@@ -216,12 +227,16 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.Submit(nil).Create(map[string]any{
-    "category": /* string */,
-    "flag": /* map[string]any */,
-    "format_version": /* int */,
-    "lang": /* string */,
-    "type": /* string */,
+    "category": "example_category",
+    "flag": map[string]any{},
+    "format_version": 1,
+    "lang": "example_lang",
+    "type": "example_type",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

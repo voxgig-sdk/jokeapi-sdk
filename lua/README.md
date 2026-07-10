@@ -356,11 +356,11 @@ Create an instance: `local submit = client:Submit(nil)`
 
 ```lua
 local submit, err = client:Submit():create({
-  category = nil, -- string
-  flag = nil, -- table
-  format_version = nil, -- number
-  lang = nil, -- string
-  type = nil, -- string
+  category = "example_category", -- string
+  flag = {}, -- table
+  format_version = 1, -- number
+  lang = "example_lang", -- string
+  type = "example_type", -- string
 })
 ```
 

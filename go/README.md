@@ -393,12 +393,16 @@ Create an instance: `submit := client.Submit(nil)`
 
 ```go
 result, err := client.Submit(nil).Create(map[string]any{
-    "category": /* string */,
-    "flag": /* map[string]any */,
-    "format_version": /* int */,
-    "lang": /* string */,
-    "type": /* string */,
+    "category": "example_category",
+    "flag": map[string]any{},
+    "format_version": 1,
+    "lang": "example_lang",
+    "type": "example_type",
 }, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 

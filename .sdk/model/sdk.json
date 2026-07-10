@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -562,14 +559,17 @@
           "name": "MIT",
           "url": "https://github.com/Sv443/JokeAPI"
         },
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "JokeAPI v2 Production Server",
             "url": "https://v2.jokeapi.dev"
           }
         ],
+        "summary": "A REST API serving uniformly and well formatted jokes without the need for API token, membership, registration or payment.",
         "title": "JokeAPI",
-        "version": "2.3.3"
+        "version": "2.3.3",
+        "website": "https://v2.jokeapi.dev"
       },
       "option": {},
       "target": {
@@ -622,6 +622,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -672,6 +675,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

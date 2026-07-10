@@ -409,11 +409,11 @@ Create an instance: `const submit = client.Submit()`
 
 ```ts
 const submit = await client.Submit().create({
-  category: /* string */,
-  flag: /* Record<string, any> */,
-  format_version: /* number */,
-  lang: /* string */,
-  type: /* string */,
+  category: 'example_category',
+  flag: {},
+  format_version: 1,
+  lang: 'example_lang',
+  type: 'example_type',
 })
 ```
 

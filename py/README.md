@@ -366,11 +366,11 @@ Create an instance: `submit = client.Submit()`
 
 ```python
 submit = client.Submit().create({
-    "category": "example",  # str
+    "category": "example_category",  # str
     "flag": {},  # dict
     "format_version": 1,  # int
-    "lang": "example",  # str
-    "type": "example",  # str
+    "lang": "example_lang",  # str
+    "type": "example_type",  # str
 })
 ```
 

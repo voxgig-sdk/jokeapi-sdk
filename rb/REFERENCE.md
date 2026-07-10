@@ -224,11 +224,11 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.Submit.create({
-  "category" => "example", # String
+  "category" => "example_category", # String
   "flag" => {}, # Hash
   "format_version" => 1, # Integer
-  "lang" => "example", # String
-  "type" => "example", # String
+  "lang" => "example_lang", # String
+  "type" => "example_type", # String
 })
 ```
 

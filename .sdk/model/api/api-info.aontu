@@ -19,9 +19,9 @@ main: {
           url: "https://v2.jokeapi.dev"
         }
       ]
+      summary: "A REST API serving uniformly and well formatted jokes without the need for API token, membership, registration or payment."
       title: "JokeAPI"
       version: "2.3.3"
+      website: "https://v2.jokeapi.dev"
     }
   }
-}
-
