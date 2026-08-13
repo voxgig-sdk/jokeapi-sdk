@@ -11,22 +11,22 @@ main: kit: entity: info: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "format"
+      name: "formats"
       req: false
       type: "`$ARRAY`"
     }
     {
-      name: "joke"
+      name: "jokeLanguages"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "jokes"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "joke_language"
-      req: false
-      type: "`$ARRAY`"
-    }
-    {
-      name: "system_language"
+      name: "systemLanguages"
       req: false
       type: "`$ARRAY`"
     }

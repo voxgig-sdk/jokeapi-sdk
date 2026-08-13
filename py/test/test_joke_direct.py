@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from jokeapi_sdk.utility.voxgig_struct import voxgig_struct as vs
 from jokeapi_sdk import JokeapiSDK
-from core import helpers
+from jokeapi_sdk.core import helpers
 from test import runner
 
 

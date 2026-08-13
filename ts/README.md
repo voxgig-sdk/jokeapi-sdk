@@ -35,7 +35,9 @@ const client = new JokeapiSDK()
 
 ### 2. List info records
 
-`list()` resolves to an array of Info objects — iterate it directly:
+`list()` resolves to an array of Info ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const infos = await client.Info().list()
@@ -120,7 +122,8 @@ Create a mock client for unit testing — no server required:
 const client = JokeapiSDK.test()
 
 const info = await client.Info().list()
-// info is a bare entity populated with mock response data
+// info is the entity, populated with mock response data
+// — call info.data() for the record itself
 console.log(info)
 ```
 
@@ -290,10 +293,10 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `error` |  |
-| `format` |  |
-| `joke` |  |
-| `joke_language` |  |
-| `system_language` |  |
+| `formats` |  |
+| `jokeLanguages` |  |
+| `jokes` |  |
+| `systemLanguages` |  |
 | `version` |  |
 
 Operations: list.
@@ -316,8 +319,8 @@ API path: `/joke/{category}`
 | `category` |  |
 | `delivery` |  |
 | `error` |  |
-| `flag` |  |
-| `format_version` |  |
+| `flags` |  |
+| `formatVersion` |  |
 | `joke` |  |
 | `lang` |  |
 | `message` |  |
@@ -349,10 +352,10 @@ Create an instance: `const info = client.Info()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `error` | `boolean` |  |
-| `format` | `any[]` |  |
-| `joke` | `Record<string, any>` |  |
-| `joke_language` | `any[]` |  |
-| `system_language` | `any[]` |  |
+| `formats` | `any[]` |  |
+| `jokeLanguages` | `any[]` |  |
+| `jokes` | `Record<string, any>` |  |
+| `systemLanguages` | `any[]` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -396,8 +399,8 @@ Create an instance: `const submit = client.Submit()`
 | `category` | `string` |  |
 | `delivery` | `string` |  |
 | `error` | `boolean` |  |
-| `flag` | `Record<string, any>` |  |
-| `format_version` | `number` |  |
+| `flags` | `Record<string, any>` |  |
+| `formatVersion` | `number` |  |
 | `joke` | `string` |  |
 | `lang` | `string` |  |
 | `message` | `string` |  |
@@ -410,8 +413,8 @@ Create an instance: `const submit = client.Submit()`
 ```ts
 const submit = await client.Submit().create({
   category: 'example_category',
-  flag: {},
-  format_version: 1,
+  flags: {},
+  formatVersion: 1,
   lang: 'example_lang',
   type: 'example_type',
 })

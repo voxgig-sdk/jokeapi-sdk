@@ -44,7 +44,7 @@ class SubmitEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.submit"), "submit_ref01"));
 
         $submit_ref01_data_result = $submit_ref01_ent->create($submit_ref01_data, null);
-        $submit_ref01_data = Helpers::to_map($submit_ref01_data_result);
+        $submit_ref01_data = Helpers::to_map(is_object($submit_ref01_data_result) && method_exists($submit_ref01_data_result, 'data_get') ? $submit_ref01_data_result->data_get() : $submit_ref01_data_result);
         $this->assertNotNull($submit_ref01_data);
 
     }

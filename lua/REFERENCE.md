@@ -99,10 +99,10 @@ local info = client:Info(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `error` | `boolean` | No |  |
-| `format` | `table` | No |  |
-| `joke` | `table` | No |  |
-| `joke_language` | `table` | No |  |
-| `system_language` | `table` | No |  |
+| `formats` | `table` | No |  |
+| `jokeLanguages` | `table` | No |  |
+| `jokes` | `table` | No |  |
+| `systemLanguages` | `table` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations
@@ -204,8 +204,8 @@ local submit = client:Submit(nil)
 | `category` | `string` | Yes |  |
 | `delivery` | `string` | No |  |
 | `error` | `boolean` | No |  |
-| `flag` | `table` | Yes |  |
-| `format_version` | `number` | Yes |  |
+| `flags` | `table` | Yes |  |
+| `formatVersion` | `number` | Yes |  |
 | `joke` | `string` | No |  |
 | `lang` | `string` | Yes |  |
 | `message` | `string` | No |  |
@@ -222,8 +222,8 @@ Create a new entity with the given data.
 ```lua
 local result, err = client:Submit():create({
   category = --[[ string ]],
-  flag = --[[ table ]],
-  format_version = --[[ number ]],
+  flags = --[[ table ]],
+  formatVersion = --[[ number ]],
   lang = --[[ string ]],
   type = --[[ string ]],
 })

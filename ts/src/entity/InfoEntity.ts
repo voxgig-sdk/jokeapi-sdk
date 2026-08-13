@@ -37,7 +37,7 @@ class InfoEntity extends JokeapiEntityBase<Info> {
 
 
 
-  async list(this: any, reqmatch?: InfoListMatch, ctrl?: Control): Promise<Info[]> {
+  async list(this: any, reqmatch?: InfoListMatch, ctrl?: Control): Promise<InfoEntity[]> {
 
     const utility = this._utility
 

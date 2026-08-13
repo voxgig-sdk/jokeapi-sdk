@@ -62,7 +62,7 @@ describe('SubmitEntity', async () => {
     const submit_ref01_ent = client.Submit()
     let submit_ref01_data = setup.data.new.submit['submit_ref01']
 
-    submit_ref01_data = await submit_ref01_ent.create(submit_ref01_data)
+    submit_ref01_data = (await submit_ref01_ent.create(submit_ref01_data)).data()
     assert(null != submit_ref01_data)
 
 

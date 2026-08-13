@@ -101,10 +101,10 @@ $info = $client->Info();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `error` | `bool` | No |  |
-| `format` | `array` | No |  |
-| `joke` | `array` | No |  |
-| `joke_language` | `array` | No |  |
-| `system_language` | `array` | No |  |
+| `formats` | `array` | No |  |
+| `jokeLanguages` | `array` | No |  |
+| `jokes` | `array` | No |  |
+| `systemLanguages` | `array` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations
@@ -206,8 +206,8 @@ $submit = $client->Submit();
 | `category` | `string` | Yes |  |
 | `delivery` | `string` | No |  |
 | `error` | `bool` | No |  |
-| `flag` | `array` | Yes |  |
-| `format_version` | `int` | Yes |  |
+| `flags` | `array` | Yes |  |
+| `formatVersion` | `int` | Yes |  |
 | `joke` | `string` | No |  |
 | `lang` | `string` | Yes |  |
 | `message` | `string` | No |  |
@@ -224,8 +224,8 @@ Create a new entity with the given data. Throws on error.
 ```php
 $result = $client->Submit()->create([
   "category" => null, // string
-  "flag" => null, // array
-  "format_version" => null, // int
+  "flags" => null, // array
+  "formatVersion" => null, // int
   "lang" => null, // string
   "type" => null, // string
 ]);

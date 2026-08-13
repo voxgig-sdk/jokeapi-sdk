@@ -102,10 +102,10 @@ info = client.Info
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `error` | `Boolean` | No |  |
-| `format` | `Array` | No |  |
-| `joke` | `Hash` | No |  |
-| `joke_language` | `Array` | No |  |
-| `system_language` | `Array` | No |  |
+| `formats` | `Array` | No |  |
+| `jokeLanguages` | `Array` | No |  |
+| `jokes` | `Hash` | No |  |
+| `systemLanguages` | `Array` | No |  |
 | `version` | `String` | No |  |
 
 ### Operations
@@ -207,8 +207,8 @@ submit = client.Submit
 | `category` | `String` | Yes |  |
 | `delivery` | `String` | No |  |
 | `error` | `Boolean` | No |  |
-| `flag` | `Hash` | Yes |  |
-| `format_version` | `Integer` | Yes |  |
+| `flags` | `Hash` | Yes |  |
+| `formatVersion` | `Integer` | Yes |  |
 | `joke` | `String` | No |  |
 | `lang` | `String` | Yes |  |
 | `message` | `String` | No |  |
@@ -225,8 +225,8 @@ Create a new entity with the given data. Raises on error.
 ```ruby
 result = client.Submit.create({
   "category" => "example_category", # String
-  "flag" => {}, # Hash
-  "format_version" => 1, # Integer
+  "flags" => {}, # Hash
+  "formatVersion" => 1, # Integer
   "lang" => "example_lang", # String
   "type" => "example_type", # String
 })

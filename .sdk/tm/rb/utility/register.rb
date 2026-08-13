@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ JokeapiUtility.registrar = ->(u) {
   u.prepare_params = JokeapiUtilities::PrepareParams
   u.prepare_path = JokeapiUtilities::PreparePath
   u.prepare_query = JokeapiUtilities::PrepareQuery
+  u.graphql_body = JokeapiUtilities::GraphqlBody
+  u.graphql_errors = JokeapiUtilities::GraphqlErrors
   u.result_basic = JokeapiUtilities::ResultBasic
   u.result_body = JokeapiUtilities::ResultBody
   u.result_headers = JokeapiUtilities::ResultHeaders

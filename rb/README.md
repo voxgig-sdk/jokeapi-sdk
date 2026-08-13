@@ -119,7 +119,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = JokeapiSDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 info = client.Info.list()
 puts info
 ```
@@ -241,10 +242,10 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `error` |  |
-| `format` |  |
-| `joke` |  |
-| `joke_language` |  |
-| `system_language` |  |
+| `formats` |  |
+| `jokeLanguages` |  |
+| `jokes` |  |
+| `systemLanguages` |  |
 | `version` |  |
 
 Operations: List.
@@ -267,8 +268,8 @@ API path: `/joke/{category}`
 | `category` |  |
 | `delivery` |  |
 | `error` |  |
-| `flag` |  |
-| `format_version` |  |
+| `flags` |  |
+| `formatVersion` |  |
 | `joke` |  |
 | `lang` |  |
 | `message` |  |
@@ -300,10 +301,10 @@ Create an instance: `info = client.Info`
 | Field | Type | Description |
 | --- | --- | --- |
 | `error` | `Boolean` |  |
-| `format` | `Array` |  |
-| `joke` | `Hash` |  |
-| `joke_language` | `Array` |  |
-| `system_language` | `Array` |  |
+| `formats` | `Array` |  |
+| `jokeLanguages` | `Array` |  |
+| `jokes` | `Hash` |  |
+| `systemLanguages` | `Array` |  |
 | `version` | `String` |  |
 
 #### Example: List
@@ -327,7 +328,7 @@ Create an instance: `joke = client.Joke`
 #### Example: Load
 
 ```ruby
-# load returns the bare Joke record (raises on error).
+# load returns the ENTITY — call data_get for the Joke record (raises on error).
 joke = client.Joke.load({ "id" => "joke_id" })
 ```
 
@@ -349,8 +350,8 @@ Create an instance: `submit = client.Submit`
 | `category` | `String` |  |
 | `delivery` | `String` |  |
 | `error` | `Boolean` |  |
-| `flag` | `Hash` |  |
-| `format_version` | `Integer` |  |
+| `flags` | `Hash` |  |
+| `formatVersion` | `Integer` |  |
 | `joke` | `String` |  |
 | `lang` | `String` |  |
 | `message` | `String` |  |
@@ -363,8 +364,8 @@ Create an instance: `submit = client.Submit`
 ```ruby
 submit = client.Submit.create({
   "category" => "example_category", # String
-  "flag" => {}, # Hash
-  "format_version" => 1, # Integer
+  "flags" => {}, # Hash
+  "formatVersion" => 1, # Integer
   "lang" => "example_lang", # String
   "type" => "example_type", # String
 })

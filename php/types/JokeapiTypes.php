@@ -16,10 +16,10 @@ declare(strict_types=1);
 class Info
 {
     public ?bool $error = null;
-    public ?array $format = null;
-    public ?array $joke = null;
-    public ?array $joke_language = null;
-    public ?array $system_language = null;
+    public ?array $formats = null;
+    public ?array $jokeLanguages = null;
+    public ?array $jokes = null;
+    public ?array $systemLanguages = null;
     public ?string $version = null;
 }
 
@@ -27,10 +27,10 @@ class Info
 class InfoListMatch
 {
     public ?bool $error = null;
-    public ?array $format = null;
-    public ?array $joke = null;
-    public ?array $joke_language = null;
-    public ?array $system_language = null;
+    public ?array $formats = null;
+    public ?array $jokeLanguages = null;
+    public ?array $jokes = null;
+    public ?array $systemLanguages = null;
     public ?string $version = null;
 }
 
@@ -51,8 +51,8 @@ class Submit
     public string $category;
     public ?string $delivery = null;
     public ?bool $error = null;
-    public array $flag;
-    public int $format_version;
+    public array $flags;
+    public int $formatVersion;
     public ?string $joke = null;
     public string $lang;
     public ?string $message = null;
@@ -67,8 +67,8 @@ class SubmitCreateData
     public string $category;
     public ?string $delivery = null;
     public ?bool $error = null;
-    public array $flag;
-    public int $format_version;
+    public array $flags;
+    public int $formatVersion;
     public ?string $joke = null;
     public string $lang;
     public ?string $message = null;

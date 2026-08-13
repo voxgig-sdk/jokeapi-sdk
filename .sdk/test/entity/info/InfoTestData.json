@@ -3,26 +3,26 @@
     "info": {
       "INFO00": {
         "error": true,
-        "format": [],
-        "joke": {},
-        "joke_language": [],
-        "system_language": [],
+        "formats": [],
+        "jokeLanguages": [],
+        "jokes": {},
+        "systemLanguages": [],
         "version": "s41"
       },
       "INFO01": {
         "error": true,
-        "format": [],
-        "joke": {},
-        "joke_language": [],
-        "system_language": [],
+        "formats": [],
+        "jokeLanguages": [],
+        "jokes": {},
+        "systemLanguages": [],
         "version": "s7d"
       },
       "INFO02": {
         "error": true,
-        "format": [],
-        "joke": {},
-        "joke_language": [],
-        "system_language": [],
+        "formats": [],
+        "jokeLanguages": [],
+        "jokes": {},
+        "systemLanguages": [],
         "version": "sb9"
       }
     }
@@ -31,10 +31,10 @@
     "info": {
       "info_ref01": {
         "error": true,
-        "format": [],
-        "joke": {},
-        "joke_language": [],
-        "system_language": [],
+        "formats": [],
+        "jokeLanguages": [],
+        "jokes": {},
+        "systemLanguages": [],
         "version": "sf5"
       }
     }

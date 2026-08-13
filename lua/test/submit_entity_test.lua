@@ -41,7 +41,7 @@ describe("SubmitEntity", function()
 
     local submit_ref01_data_result, err = submit_ref01_ent:create(submit_ref01_data, nil)
     assert.is_nil(err)
-    submit_ref01_data = helpers.to_map(submit_ref01_data_result)
+    submit_ref01_data = helpers.to_map(type(submit_ref01_data_result) == 'table' and submit_ref01_data_result.data_get and submit_ref01_data_result:data_get() or submit_ref01_data_result)
     assert.is_not_nil(submit_ref01_data)
 
   end)

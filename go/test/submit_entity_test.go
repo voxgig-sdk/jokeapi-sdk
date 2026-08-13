@@ -58,7 +58,7 @@ func TestSubmitEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("create failed: %v", err)
 		}
-		submitRef01Data = core.ToMapAny(submitRef01DataResult)
+		submitRef01Data = core.ToMapAny(entityData(submitRef01DataResult))
 		if submitRef01Data == nil {
 			t.Fatal("expected create result to be a map")
 		}

@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'Jokeapi',
   }
 
 
@@ -69,28 +69,28 @@ class Config {
         },
         {
           "active": true,
-          "name": "format",
+          "name": "formats",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 1
         },
         {
           "active": true,
-          "name": "joke",
+          "name": "jokeLanguages",
           "req": false,
-          "type": "`$OBJECT`",
+          "type": "`$ARRAY`",
           "index$": 2
         },
         {
           "active": true,
-          "name": "joke_language",
+          "name": "jokes",
           "req": false,
-          "type": "`$ARRAY`",
+          "type": "`$OBJECT`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "system_language",
+          "name": "systemLanguages",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 4
@@ -133,6 +133,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/info",
               "parts": [
@@ -253,6 +254,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/joke/{category}",
               "parts": [
@@ -316,14 +318,14 @@ class Config {
         },
         {
           "active": true,
-          "name": "flag",
+          "name": "flags",
           "req": true,
           "type": "`$OBJECT`",
           "index$": 3
         },
         {
           "active": true,
-          "name": "format_version",
+          "name": "formatVersion",
           "req": true,
           "type": "`$INTEGER`",
           "index$": 4
@@ -400,6 +402,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "POST",
               "orig": "/submit",
               "parts": [

@@ -223,9 +223,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local info, err = client:Info():load()
+    local joke, err = client:Joke():load({ id = "example_id" })
     if err then error(err) end
-    -- info is the loaded record
+    -- joke is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -237,10 +237,10 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `error` |  |
-| `format` |  |
-| `joke` |  |
-| `joke_language` |  |
-| `system_language` |  |
+| `formats` |  |
+| `jokeLanguages` |  |
+| `jokes` |  |
+| `systemLanguages` |  |
 | `version` |  |
 
 Operations: List.
@@ -263,8 +263,8 @@ API path: `/joke/{category}`
 | `category` |  |
 | `delivery` |  |
 | `error` |  |
-| `flag` |  |
-| `format_version` |  |
+| `flags` |  |
+| `formatVersion` |  |
 | `joke` |  |
 | `lang` |  |
 | `message` |  |
@@ -296,10 +296,10 @@ Create an instance: `local info = client:Info(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `error` | `boolean` |  |
-| `format` | `table` |  |
-| `joke` | `table` |  |
-| `joke_language` | `table` |  |
-| `system_language` | `table` |  |
+| `formats` | `table` |  |
+| `jokeLanguages` | `table` |  |
+| `jokes` | `table` |  |
+| `systemLanguages` | `table` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -343,8 +343,8 @@ Create an instance: `local submit = client:Submit(nil)`
 | `category` | `string` |  |
 | `delivery` | `string` |  |
 | `error` | `boolean` |  |
-| `flag` | `table` |  |
-| `format_version` | `number` |  |
+| `flags` | `table` |  |
+| `formatVersion` | `number` |  |
 | `joke` | `string` |  |
 | `lang` | `string` |  |
 | `message` | `string` |  |
@@ -357,8 +357,8 @@ Create an instance: `local submit = client:Submit(nil)`
 ```lua
 local submit, err = client:Submit():create({
   category = "example_category", -- string
-  flag = {}, -- table
-  format_version = 1, -- number
+  flags = {}, -- table
+  formatVersion = 1, -- number
   lang = "example_lang", -- string
   type = "example_type", -- string
 })

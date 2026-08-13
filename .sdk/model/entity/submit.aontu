@@ -21,12 +21,12 @@ main: kit: entity: submit: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "flag"
+      name: "flags"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "format_version"
+      name: "formatVersion"
       req: true
       type: "`$INTEGER`"
     }

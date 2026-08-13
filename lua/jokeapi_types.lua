@@ -8,18 +8,18 @@
 
 ---@class Info
 ---@field error? boolean
----@field format? table
----@field joke? table
----@field joke_language? table
----@field system_language? table
+---@field formats? table
+---@field jokeLanguages? table
+---@field jokes? table
+---@field systemLanguages? table
 ---@field version? string
 
 ---@class InfoListMatch
 ---@field error? boolean
----@field format? table
----@field joke? table
----@field joke_language? table
----@field system_language? table
+---@field formats? table
+---@field jokeLanguages? table
+---@field jokes? table
+---@field systemLanguages? table
 ---@field version? string
 
 ---@class Joke
@@ -31,8 +31,8 @@
 ---@field category string
 ---@field delivery? string
 ---@field error? boolean
----@field flag table
----@field format_version number
+---@field flags table
+---@field formatVersion number
 ---@field joke? string
 ---@field lang string
 ---@field message? string
@@ -44,8 +44,8 @@
 ---@field category string
 ---@field delivery? string
 ---@field error? boolean
----@field flag table
----@field format_version number
+---@field flags table
+---@field formatVersion number
 ---@field joke? string
 ---@field lang string
 ---@field message? string

@@ -35,28 +35,28 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "format",
+						"name": "formats",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "joke",
+						"name": "jokeLanguages",
 						"req": false,
-						"type": "`$OBJECT`",
+						"type": "`$ARRAY`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "joke_language",
+						"name": "jokes",
 						"req": false,
-						"type": "`$ARRAY`",
+						"type": "`$OBJECT`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "system_language",
+						"name": "systemLanguages",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 4,
@@ -99,6 +99,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/info",
 								"parts": []any{
@@ -117,7 +118,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -219,6 +219,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/joke/{category}",
 								"parts": []any{
@@ -250,7 +251,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -282,14 +282,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "flag",
+						"name": "flags",
 						"req": true,
 						"type": "`$OBJECT`",
 						"index$": 3,
 					},
 					map[string]any{
 						"active": true,
-						"name": "format_version",
+						"name": "formatVersion",
 						"req": true,
 						"type": "`$INTEGER`",
 						"index$": 4,
@@ -366,6 +366,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/submit",
 								"parts": []any{
@@ -384,7 +385,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{

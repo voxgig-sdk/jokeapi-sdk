@@ -141,10 +141,10 @@ const info = client.Info()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `error` | `boolean` | No |  |
-| `format` | `any[]` | No |  |
-| `joke` | `Record<string, any>` | No |  |
-| `joke_language` | `any[]` | No |  |
-| `system_language` | `any[]` | No |  |
+| `formats` | `any[]` | No |  |
+| `jokeLanguages` | `any[]` | No |  |
+| `jokes` | `Record<string, any>` | No |  |
+| `systemLanguages` | `any[]` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations
@@ -242,8 +242,8 @@ const submit = client.Submit()
 | `category` | `string` | Yes |  |
 | `delivery` | `string` | No |  |
 | `error` | `boolean` | No |  |
-| `flag` | `Record<string, any>` | Yes |  |
-| `format_version` | `number` | Yes |  |
+| `flags` | `Record<string, any>` | Yes |  |
+| `formatVersion` | `number` | Yes |  |
 | `joke` | `string` | No |  |
 | `lang` | `string` | Yes |  |
 | `message` | `string` | No |  |
@@ -260,8 +260,8 @@ Create a new entity with the given data.
 ```ts
 const result = await client.Submit().create({
   category: 'example_category',
-  flag: {},
-  format_version: 1,
+  flags: {},
+  formatVersion: 1,
   lang: 'example_lang',
   type: 'example_type',
 })

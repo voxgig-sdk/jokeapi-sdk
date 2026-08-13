@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import JokeapiControl
-from core.error import JokeapiError
-from core.result import JokeapiResult
-from core.spec import JokeapiSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import JokeapiControl
+from projectname_sdk.core.error import JokeapiError
+from projectname_sdk.core.result import JokeapiResult
+from projectname_sdk.core.spec import JokeapiSpec
 
 
 # True when this SDK was generated with the named feature.

@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = JokeapiSDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = JokeapiSDK.test({
+  entity: {
+    info: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const infos = await client.Info().list()
-// infos is an array of bare Info records populated with mock data
+// infos is an array of Info entities, populated with mock data
+// — call infos[0].data() for the record itself
 console.log(infos)
 ```
 
@@ -110,7 +119,7 @@ import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
 
 const client = new JokeapiSDK()
 
-// List all infos (returns Info[])
+// List all infos (returns InfoEntity[] — .data() for the record)
 const infos = await client.Info().list()
 for (const info of infos) {
   console.log(info)
@@ -345,6 +354,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://v2.jokeapi.dev/](https://v2.jokeapi.dev/)
 

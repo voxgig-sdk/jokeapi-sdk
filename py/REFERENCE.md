@@ -96,10 +96,10 @@ info = client.Info()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `error` | `bool` | No |  |
-| `format` | `list` | No |  |
-| `joke` | `dict` | No |  |
-| `joke_language` | `list` | No |  |
-| `system_language` | `list` | No |  |
+| `formats` | `list` | No |  |
+| `jokeLanguages` | `list` | No |  |
+| `jokes` | `dict` | No |  |
+| `systemLanguages` | `list` | No |  |
 | `version` | `str` | No |  |
 
 ### Operations
@@ -201,8 +201,8 @@ submit = client.Submit()
 | `category` | `str` | Yes |  |
 | `delivery` | `str` | No |  |
 | `error` | `bool` | No |  |
-| `flag` | `dict` | Yes |  |
-| `format_version` | `int` | Yes |  |
+| `flags` | `dict` | Yes |  |
+| `formatVersion` | `int` | Yes |  |
 | `joke` | `str` | No |  |
 | `lang` | `str` | Yes |  |
 | `message` | `str` | No |  |
@@ -219,8 +219,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 ```python
 result = client.Submit().create({
     "category": "example_category",  # str
-    "flag": {},  # dict
-    "format_version": 1,  # int
+    "flags": {},  # dict
+    "formatVersion": 1,  # int
     "lang": "example_lang",  # str
     "type": "example_type",  # str
 })

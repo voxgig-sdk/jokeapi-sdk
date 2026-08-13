@@ -7,19 +7,19 @@
 
 export interface Info {
   error?: boolean
-  format?: any[]
-  joke?: Record<string, any>
-  joke_language?: any[]
-  system_language?: any[]
+  formats?: any[]
+  jokeLanguages?: any[]
+  jokes?: Record<string, any>
+  systemLanguages?: any[]
   version?: string
 }
 
 export interface InfoListMatch {
   error?: boolean
-  format?: any[]
-  joke?: Record<string, any>
-  joke_language?: any[]
-  system_language?: any[]
+  formats?: any[]
+  jokeLanguages?: any[]
+  jokes?: Record<string, any>
+  systemLanguages?: any[]
   version?: string
 }
 
@@ -34,8 +34,8 @@ export interface Submit {
   category: string
   delivery?: string
   error?: boolean
-  flag: Record<string, any>
-  format_version: number
+  flags: Record<string, any>
+  formatVersion: number
   joke?: string
   lang: string
   message?: string
@@ -48,8 +48,8 @@ export interface SubmitCreateData {
   category: string
   delivery?: string
   error?: boolean
-  flag: Record<string, any>
-  format_version: number
+  flags: Record<string, any>
+  formatVersion: number
   joke?: string
   lang: string
   message?: string

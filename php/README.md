@@ -125,7 +125,8 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = JokeapiSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
 $info = $client->Info()->list();
 print_r($info);
 ```
@@ -228,7 +229,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -251,10 +252,10 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `error` |  |
-| `format` |  |
-| `joke` |  |
-| `joke_language` |  |
-| `system_language` |  |
+| `formats` |  |
+| `jokeLanguages` |  |
+| `jokes` |  |
+| `systemLanguages` |  |
 | `version` |  |
 
 Operations: List.
@@ -277,8 +278,8 @@ API path: `/joke/{category}`
 | `category` |  |
 | `delivery` |  |
 | `error` |  |
-| `flag` |  |
-| `format_version` |  |
+| `flags` |  |
+| `formatVersion` |  |
 | `joke` |  |
 | `lang` |  |
 | `message` |  |
@@ -310,10 +311,10 @@ Create an instance: `$info = $client->Info();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `error` | `bool` |  |
-| `format` | `array` |  |
-| `joke` | `array` |  |
-| `joke_language` | `array` |  |
-| `system_language` | `array` |  |
+| `formats` | `array` |  |
+| `jokeLanguages` | `array` |  |
+| `jokes` | `array` |  |
+| `systemLanguages` | `array` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -337,7 +338,7 @@ Create an instance: `$joke = $client->Joke();`
 #### Example: Load
 
 ```php
-// load() returns the bare Joke record (throws on error).
+// load() returns the ENTITY — call data_get() for the Joke record (throws on error).
 $joke = $client->Joke()->load(["id" => "joke_id"]);
 ```
 
@@ -359,8 +360,8 @@ Create an instance: `$submit = $client->Submit();`
 | `category` | `string` |  |
 | `delivery` | `string` |  |
 | `error` | `bool` |  |
-| `flag` | `array` |  |
-| `format_version` | `int` |  |
+| `flags` | `array` |  |
+| `formatVersion` | `int` |  |
 | `joke` | `string` |  |
 | `lang` | `string` |  |
 | `message` | `string` |  |
@@ -373,8 +374,8 @@ Create an instance: `$submit = $client->Submit();`
 ```php
 $submit = $client->Submit()->create([
     "category" => null, // string
-    "flag" => null, // array
-    "format_version" => null, // int
+    "flags" => null, // array
+    "formatVersion" => null, // int
     "lang" => null, // string
     "type" => null, // string
 ]);

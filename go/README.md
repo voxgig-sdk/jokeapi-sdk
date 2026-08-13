@@ -266,10 +266,10 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"error"` |  |
-| `"format"` |  |
-| `"joke"` |  |
-| `"joke_language"` |  |
-| `"system_language"` |  |
+| `"formats"` |  |
+| `"jokeLanguages"` |  |
+| `"jokes"` |  |
+| `"systemLanguages"` |  |
 | `"version"` |  |
 
 Operations: List.
@@ -292,8 +292,8 @@ API path: `/joke/{category}`
 | `"category"` |  |
 | `"delivery"` |  |
 | `"error"` |  |
-| `"flag"` |  |
-| `"format_version"` |  |
+| `"flags"` |  |
+| `"formatVersion"` |  |
 | `"joke"` |  |
 | `"lang"` |  |
 | `"message"` |  |
@@ -325,10 +325,10 @@ Create an instance: `info := client.Info(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `error` | `bool` |  |
-| `format` | `[]any` |  |
-| `joke` | `map[string]any` |  |
-| `joke_language` | `[]any` |  |
-| `system_language` | `[]any` |  |
+| `formats` | `[]any` |  |
+| `jokeLanguages` | `[]any` |  |
+| `jokes` | `map[string]any` |  |
+| `systemLanguages` | `[]any` |  |
 | `version` | `string` |  |
 
 #### Example: List
@@ -380,8 +380,8 @@ Create an instance: `submit := client.Submit(nil)`
 | `category` | `string` |  |
 | `delivery` | `string` |  |
 | `error` | `bool` |  |
-| `flag` | `map[string]any` |  |
-| `format_version` | `int` |  |
+| `flags` | `map[string]any` |  |
+| `formatVersion` | `int` |  |
 | `joke` | `string` |  |
 | `lang` | `string` |  |
 | `message` | `string` |  |
@@ -394,8 +394,8 @@ Create an instance: `submit := client.Submit(nil)`
 ```go
 result, err := client.Submit(nil).Create(map[string]any{
     "category": "example_category",
-    "flag": map[string]any{},
-    "format_version": 1,
+    "flags": map[string]any{},
+    "formatVersion": 1,
     "lang": "example_lang",
     "type": "example_type",
 }, nil)

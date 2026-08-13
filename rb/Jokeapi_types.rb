@@ -13,26 +13,26 @@
 # @!attribute [rw] error
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] format
+# @!attribute [rw] formats
 #   @return [Array, nil]
 #
-# @!attribute [rw] joke
+# @!attribute [rw] jokeLanguages
+#   @return [Array, nil]
+#
+# @!attribute [rw] jokes
 #   @return [Hash, nil]
 #
-# @!attribute [rw] joke_language
-#   @return [Array, nil]
-#
-# @!attribute [rw] system_language
+# @!attribute [rw] systemLanguages
 #   @return [Array, nil]
 #
 # @!attribute [rw] version
 #   @return [String, nil]
 Info = Struct.new(
   :error,
-  :format,
-  :joke,
-  :joke_language,
-  :system_language,
+  :formats,
+  :jokeLanguages,
+  :jokes,
+  :systemLanguages,
   :version,
   keyword_init: true
 )
@@ -42,26 +42,26 @@ Info = Struct.new(
 # @!attribute [rw] error
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] format
+# @!attribute [rw] formats
 #   @return [Array, nil]
 #
-# @!attribute [rw] joke
+# @!attribute [rw] jokeLanguages
+#   @return [Array, nil]
+#
+# @!attribute [rw] jokes
 #   @return [Hash, nil]
 #
-# @!attribute [rw] joke_language
-#   @return [Array, nil]
-#
-# @!attribute [rw] system_language
+# @!attribute [rw] systemLanguages
 #   @return [Array, nil]
 #
 # @!attribute [rw] version
 #   @return [String, nil]
 InfoListMatch = Struct.new(
   :error,
-  :format,
-  :joke,
-  :joke_language,
-  :system_language,
+  :formats,
+  :jokeLanguages,
+  :jokes,
+  :systemLanguages,
   :version,
   keyword_init: true
 )
@@ -90,10 +90,10 @@ JokeLoadMatch = Struct.new(
 # @!attribute [rw] error
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] flag
+# @!attribute [rw] flags
 #   @return [Hash]
 #
-# @!attribute [rw] format_version
+# @!attribute [rw] formatVersion
 #   @return [Integer]
 #
 # @!attribute [rw] joke
@@ -117,8 +117,8 @@ Submit = Struct.new(
   :category,
   :delivery,
   :error,
-  :flag,
-  :format_version,
+  :flags,
+  :formatVersion,
   :joke,
   :lang,
   :message,
@@ -139,10 +139,10 @@ Submit = Struct.new(
 # @!attribute [rw] error
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] flag
+# @!attribute [rw] flags
 #   @return [Hash]
 #
-# @!attribute [rw] format_version
+# @!attribute [rw] formatVersion
 #   @return [Integer]
 #
 # @!attribute [rw] joke
@@ -166,8 +166,8 @@ SubmitCreateData = Struct.new(
   :category,
   :delivery,
   :error,
-  :flag,
-  :format_version,
+  :flags,
+  :formatVersion,
   :joke,
   :lang,
   :message,

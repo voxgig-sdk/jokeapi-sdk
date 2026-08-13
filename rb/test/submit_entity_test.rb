@@ -37,7 +37,7 @@ class SubmitEntityTest < Minitest::Test
       Vs.getpath(setup[:data], "new.submit"), "submit_ref01"))
 
     submit_ref01_data_result = submit_ref01_ent.create(submit_ref01_data, nil)
-    submit_ref01_data = Helpers.to_map(submit_ref01_data_result)
+    submit_ref01_data = Helpers.to_map(submit_ref01_data_result.respond_to?(:data_get) ? submit_ref01_data_result.data_get : submit_ref01_data_result)
     assert !submit_ref01_data.nil?
 
   end

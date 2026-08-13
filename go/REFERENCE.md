@@ -107,10 +107,10 @@ fmt.Println(info.GetName()) // "info"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `error` | `bool` | No |  |
-| `format` | `[]any` | No |  |
-| `joke` | `map[string]any` | No |  |
-| `joke_language` | `[]any` | No |  |
-| `system_language` | `[]any` | No |  |
+| `formats` | `[]any` | No |  |
+| `jokeLanguages` | `[]any` | No |  |
+| `jokes` | `map[string]any` | No |  |
+| `systemLanguages` | `[]any` | No |  |
 | `version` | `string` | No |  |
 
 ### Operations
@@ -210,8 +210,8 @@ fmt.Println(submit.GetName()) // "submit"
 | `category` | `string` | Yes |  |
 | `delivery` | `string` | No |  |
 | `error` | `bool` | No |  |
-| `flag` | `map[string]any` | Yes |  |
-| `format_version` | `int` | Yes |  |
+| `flags` | `map[string]any` | Yes |  |
+| `formatVersion` | `int` | Yes |  |
 | `joke` | `string` | No |  |
 | `lang` | `string` | Yes |  |
 | `message` | `string` | No |  |
@@ -228,8 +228,8 @@ Create a new entity with the given data.
 ```go
 result, err := client.Submit(nil).Create(map[string]any{
     "category": "example_category",
-    "flag": map[string]any{},
-    "format_version": 1,
+    "flags": map[string]any{},
+    "formatVersion": 1,
     "lang": "example_lang",
     "type": "example_type",
 }, nil)

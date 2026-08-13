@@ -124,7 +124,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = JokeapiSDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 info = client.Info().list()
 # info contains the mock response record
 ```
@@ -224,7 +225,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -247,10 +248,10 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `error` |  |
-| `format` |  |
-| `joke` |  |
-| `joke_language` |  |
-| `system_language` |  |
+| `formats` |  |
+| `jokeLanguages` |  |
+| `jokes` |  |
+| `systemLanguages` |  |
 | `version` |  |
 
 Operations: List.
@@ -273,8 +274,8 @@ API path: `/joke/{category}`
 | `category` |  |
 | `delivery` |  |
 | `error` |  |
-| `flag` |  |
-| `format_version` |  |
+| `flags` |  |
+| `formatVersion` |  |
 | `joke` |  |
 | `lang` |  |
 | `message` |  |
@@ -306,10 +307,10 @@ Create an instance: `info = client.Info()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `error` | `bool` |  |
-| `format` | `list` |  |
-| `joke` | `dict` |  |
-| `joke_language` | `list` |  |
-| `system_language` | `list` |  |
+| `formats` | `list` |  |
+| `jokeLanguages` | `list` |  |
+| `jokes` | `dict` |  |
+| `systemLanguages` | `list` |  |
 | `version` | `str` |  |
 
 #### Example: List
@@ -353,8 +354,8 @@ Create an instance: `submit = client.Submit()`
 | `category` | `str` |  |
 | `delivery` | `str` |  |
 | `error` | `bool` |  |
-| `flag` | `dict` |  |
-| `format_version` | `int` |  |
+| `flags` | `dict` |  |
+| `formatVersion` | `int` |  |
 | `joke` | `str` |  |
 | `lang` | `str` |  |
 | `message` | `str` |  |
@@ -367,8 +368,8 @@ Create an instance: `submit = client.Submit()`
 ```python
 submit = client.Submit().create({
     "category": "example_category",  # str
-    "flag": {},  # dict
-    "format_version": 1,  # int
+    "flags": {},  # dict
+    "formatVersion": 1,  # int
     "lang": "example_lang",  # str
     "type": "example_type",  # str
 })

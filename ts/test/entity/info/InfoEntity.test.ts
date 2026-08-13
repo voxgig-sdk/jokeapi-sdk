@@ -63,7 +63,7 @@ describe('InfoEntity', async () => {
     const info_ref01_ent = client.Info()
     const info_ref01_match: any = {}
 
-    const info_ref01_list = await info_ref01_ent.list(info_ref01_match)
+    const info_ref01_list = (await info_ref01_ent.list(info_ref01_match)).map((e: any) => e.data())
 
 
   })
