@@ -28,7 +28,7 @@ class JokeapiSDK
     utility = JokeapiUtility.new
     @_utility = utility
 
-    config = JokeapiConfig.make_config
+    config = JokeapiConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

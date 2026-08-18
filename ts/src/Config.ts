@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://v2.jokeapi.dev',
+    base: "https://v2.jokeapi.dev",
 
     headers: {
       "content-type": "application/json"
@@ -61,46 +61,28 @@ class Config {
     "info": {
       "fields": [
         {
-          "active": true,
           "name": "error",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 0
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "formats",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 1
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "jokeLanguages",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 2
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "jokes",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "systemLanguages",
-          "req": false,
-          "type": "`$ARRAY`",
-          "index$": 4
+          "type": "`$ARRAY`"
         },
         {
-          "active": true,
           "name": "version",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         }
       ],
       "name": "info",
@@ -110,25 +92,20 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "example": "json",
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "en",
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -148,11 +125,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -168,88 +143,69 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "params": [
                   {
-                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "category",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "index$": 0
+                    "type": "`$STRING`"
                   }
                 ],
                 "query": [
                   {
-                    "active": true,
                     "example": 1,
                     "kind": "query",
                     "name": "amount",
                     "orig": "amount",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "nsfw,racist,sexist",
                     "kind": "query",
                     "name": "blacklist_flag",
                     "orig": "blacklist_flag",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "C%23",
                     "kind": "query",
                     "name": "contain",
                     "orig": "contain",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "json",
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "0-55",
                     "kind": "query",
                     "name": "id_range",
                     "orig": "id_range",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "en",
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "safe_mode",
                     "orig": "safe_mode",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "type",
                     "orig": "type",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -282,11 +238,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -296,81 +250,53 @@ class Config {
     "submit": {
       "fields": [
         {
-          "active": true,
           "name": "category",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 0
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "delivery",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "error",
-          "req": false,
-          "type": "`$BOOLEAN`",
-          "index$": 2
+          "type": "`$BOOLEAN`"
         },
         {
-          "active": true,
           "name": "flags",
           "req": true,
-          "type": "`$OBJECT`",
-          "index$": 3
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "formatVersion",
           "req": true,
-          "type": "`$INTEGER`",
-          "index$": 4
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "joke",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 5
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "lang",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 6
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "message",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 7
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "setup",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 8
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 9
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "type",
           "req": true,
-          "type": "`$STRING`",
-          "index$": 10
+          "type": "`$STRING`"
         }
       ],
       "name": "submit",
@@ -380,24 +306,19 @@ class Config {
           "name": "create",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "dry_run",
                     "orig": "dry_run",
-                    "reqd": false,
                     "type": "`$BOOLEAN`"
                   },
                   {
-                    "active": true,
                     "example": "json",
                     "kind": "query",
                     "name": "format",
                     "orig": "format",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -417,11 +338,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "create"
+          ]
         }
       },
       "relations": {

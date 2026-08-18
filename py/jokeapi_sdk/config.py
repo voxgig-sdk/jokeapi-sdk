@@ -1,7 +1,30 @@
 # Jokeapi SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "Jokeapi",
@@ -28,46 +51,28 @@ def make_config():
       "info": {
         "fields": [
           {
-            "active": True,
             "name": "error",
-            "req": False,
             "type": "`$BOOLEAN`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "formats",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "jokeLanguages",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "jokes",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "systemLanguages",
-            "req": False,
             "type": "`$ARRAY`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "version",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 5,
           },
         ],
         "name": "info",
@@ -77,25 +82,20 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "example": "json",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "en",
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -116,10 +116,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -135,88 +133,69 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "params": [
                     {
-                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "category",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "index$": 0,
                     },
                   ],
                   "query": [
                     {
-                      "active": True,
                       "example": 1,
                       "kind": "query",
                       "name": "amount",
                       "orig": "amount",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "example": "nsfw,racist,sexist",
                       "kind": "query",
                       "name": "blacklist_flag",
                       "orig": "blacklist_flag",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "C%23",
                       "kind": "query",
                       "name": "contain",
                       "orig": "contain",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "json",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "0-55",
                       "kind": "query",
                       "name": "id_range",
                       "orig": "id_range",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "en",
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "safe_mode",
                       "orig": "safe_mode",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "type",
                       "orig": "type",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -250,10 +229,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -263,81 +240,53 @@ def make_config():
       "submit": {
         "fields": [
           {
-            "active": True,
             "name": "category",
             "req": True,
             "type": "`$STRING`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "delivery",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "error",
-            "req": False,
             "type": "`$BOOLEAN`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "flags",
             "req": True,
             "type": "`$OBJECT`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "formatVersion",
             "req": True,
             "type": "`$INTEGER`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "joke",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "lang",
             "req": True,
             "type": "`$STRING`",
-            "index$": 6,
           },
           {
-            "active": True,
             "name": "message",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 7,
           },
           {
-            "active": True,
             "name": "setup",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 8,
           },
           {
-            "active": True,
             "name": "timestamp",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 9,
           },
           {
-            "active": True,
             "name": "type",
             "req": True,
             "type": "`$STRING`",
-            "index$": 10,
           },
         ],
         "name": "submit",
@@ -347,24 +296,19 @@ def make_config():
             "name": "create",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "dry_run",
                       "orig": "dry_run",
-                      "reqd": False,
                       "type": "`$BOOLEAN`",
                     },
                     {
-                      "active": True,
                       "example": "json",
                       "kind": "query",
                       "name": "format",
                       "orig": "format",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -385,10 +329,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "create",
           },
         },
         "relations": {
