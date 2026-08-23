@@ -272,15 +272,15 @@ API path: `/joke/{category}`
 | Field | Description |
 | --- | --- |
 | `category` |  |
-| `delivery` |  |
+| `delivery` | The delivery/punchline (for twopart jokes only) |
 | `error` |  |
 | `flags` |  |
 | `formatVersion` |  |
-| `joke` |  |
-| `lang` |  |
+| `joke` | The joke content (for single-type jokes only) |
+| `lang` | Language code (ISO 639-1) |
 | `message` |  |
-| `setup` |  |
-| `timestamp` |  |
+| `setup` | The setup part (for twopart jokes only) |
+| `timestamp` | 13-character UNIX timestamp |
 | `type` |  |
 
 Operations: Create.
@@ -352,15 +352,15 @@ Create an instance: `submit = client.Submit()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `str` |  |
-| `delivery` | `str` |  |
+| `delivery` | `str` | The delivery/punchline (for twopart jokes only) |
 | `error` | `bool` |  |
 | `flags` | `dict` |  |
 | `formatVersion` | `int` |  |
-| `joke` | `str` |  |
-| `lang` | `str` |  |
+| `joke` | `str` | The joke content (for single-type jokes only) |
+| `lang` | `str` | Language code (ISO 639-1) |
 | `message` | `str` |  |
-| `setup` | `str` |  |
-| `timestamp` | `int` |  |
+| `setup` | `str` | The setup part (for twopart jokes only) |
+| `timestamp` | `int` | 13-character UNIX timestamp |
 | `type` | `str` |  |
 
 #### Example: Create

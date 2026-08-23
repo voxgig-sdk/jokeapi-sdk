@@ -6,7 +6,7 @@ The Golang SDK for the Jokeapi API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Info(nil)` — each with the same small set of operations (`List`, `Load`, `Create`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -290,15 +290,15 @@ API path: `/joke/{category}`
 | Field | Description |
 | --- | --- |
 | `"category"` |  |
-| `"delivery"` |  |
+| `"delivery"` | The delivery/punchline (for twopart jokes only) |
 | `"error"` |  |
 | `"flags"` |  |
 | `"formatVersion"` |  |
-| `"joke"` |  |
-| `"lang"` |  |
+| `"joke"` | The joke content (for single-type jokes only) |
+| `"lang"` | Language code (ISO 639-1) |
 | `"message"` |  |
-| `"setup"` |  |
-| `"timestamp"` |  |
+| `"setup"` | The setup part (for twopart jokes only) |
+| `"timestamp"` | 13-character UNIX timestamp |
 | `"type"` |  |
 
 Operations: Create.
@@ -378,15 +378,15 @@ Create an instance: `submit := client.Submit(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `string` |  |
-| `delivery` | `string` |  |
+| `delivery` | `string` | The delivery/punchline (for twopart jokes only) |
 | `error` | `bool` |  |
 | `flags` | `map[string]any` |  |
 | `formatVersion` | `int` |  |
-| `joke` | `string` |  |
-| `lang` | `string` |  |
+| `joke` | `string` | The joke content (for single-type jokes only) |
+| `lang` | `string` | Language code (ISO 639-1) |
 | `message` | `string` |  |
-| `setup` | `string` |  |
-| `timestamp` | `int` |  |
+| `setup` | `string` | The setup part (for twopart jokes only) |
+| `timestamp` | `int` | 13-character UNIX timestamp |
 | `type` | `string` |  |
 
 #### Example: Create

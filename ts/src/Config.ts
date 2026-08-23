@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Jokeapi',
+        slug: "jokeapi",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -256,6 +267,7 @@ class Config {
         },
         {
           "name": "delivery",
+          "short": "The delivery/punchline (for twopart jokes only)",
           "type": "`$STRING`"
         },
         {
@@ -274,11 +286,13 @@ class Config {
         },
         {
           "name": "joke",
+          "short": "The joke content (for single-type jokes only)",
           "type": "`$STRING`"
         },
         {
           "name": "lang",
           "req": true,
+          "short": "Language code (ISO 639-1)",
           "type": "`$STRING`"
         },
         {
@@ -287,10 +301,12 @@ class Config {
         },
         {
           "name": "setup",
+          "short": "The setup part (for twopart jokes only)",
           "type": "`$STRING`"
         },
         {
           "name": "timestamp",
+          "short": "13-character UNIX timestamp",
           "type": "`$INTEGER`"
         },
         {

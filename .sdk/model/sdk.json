@@ -274,6 +274,7 @@
               "active": true,
               "name": "delivery",
               "req": false,
+              "short": "The delivery/punchline (for twopart jokes only)",
               "type": "`$STRING`"
             },
             {
@@ -298,12 +299,14 @@
               "active": true,
               "name": "joke",
               "req": false,
+              "short": "The joke content (for single-type jokes only)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lang",
               "req": true,
+              "short": "Language code (ISO 639-1)",
               "type": "`$STRING`"
             },
             {
@@ -316,12 +319,14 @@
               "active": true,
               "name": "setup",
               "req": false,
+              "short": "The setup part (for twopart jokes only)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "timestamp",
               "req": false,
+              "short": "13-character UNIX timestamp",
               "type": "`$INTEGER`"
             },
             {

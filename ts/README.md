@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -317,15 +317,15 @@ API path: `/joke/{category}`
 | Field | Description |
 | --- | --- |
 | `category` |  |
-| `delivery` |  |
+| `delivery` | The delivery/punchline (for twopart jokes only) |
 | `error` |  |
 | `flags` |  |
 | `formatVersion` |  |
-| `joke` |  |
-| `lang` |  |
+| `joke` | The joke content (for single-type jokes only) |
+| `lang` | Language code (ISO 639-1) |
 | `message` |  |
-| `setup` |  |
-| `timestamp` |  |
+| `setup` | The setup part (for twopart jokes only) |
+| `timestamp` | 13-character UNIX timestamp |
 | `type` |  |
 
 Operations: create.
@@ -397,15 +397,15 @@ Create an instance: `const submit = client.Submit()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `category` | `string` |  |
-| `delivery` | `string` |  |
+| `delivery` | `string` | The delivery/punchline (for twopart jokes only) |
 | `error` | `boolean` |  |
 | `flags` | `Record<string, any>` |  |
 | `formatVersion` | `number` |  |
-| `joke` | `string` |  |
-| `lang` | `string` |  |
+| `joke` | `string` | The joke content (for single-type jokes only) |
+| `lang` | `string` | Language code (ISO 639-1) |
 | `message` | `string` |  |
-| `setup` | `string` |  |
-| `timestamp` | `number` |  |
+| `setup` | `string` | The setup part (for twopart jokes only) |
+| `timestamp` | `number` | 13-character UNIX timestamp |
 | `type` | `string` |  |
 
 #### Example: Create

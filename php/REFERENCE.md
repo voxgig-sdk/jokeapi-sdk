@@ -204,15 +204,15 @@ $submit = $client->Submit();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `string` | Yes |  |
-| `delivery` | `string` | No |  |
+| `delivery` | `string` | No | The delivery/punchline (for twopart jokes only) |
 | `error` | `bool` | No |  |
 | `flags` | `array` | Yes |  |
 | `formatVersion` | `int` | Yes |  |
-| `joke` | `string` | No |  |
-| `lang` | `string` | Yes |  |
+| `joke` | `string` | No | The joke content (for single-type jokes only) |
+| `lang` | `string` | Yes | Language code (ISO 639-1) |
 | `message` | `string` | No |  |
-| `setup` | `string` | No |  |
-| `timestamp` | `int` | No |  |
+| `setup` | `string` | No | The setup part (for twopart jokes only) |
+| `timestamp` | `int` | No | 13-character UNIX timestamp |
 | `type` | `string` | Yes |  |
 
 ### Operations

@@ -13,6 +13,7 @@ main: kit: entity: submit: {
     {
       name: "delivery"
       req: false
+      short: "The delivery/punchline (for twopart jokes only)"
       type: "`$STRING`"
     }
     {
@@ -33,11 +34,13 @@ main: kit: entity: submit: {
     {
       name: "joke"
       req: false
+      short: "The joke content (for single-type jokes only)"
       type: "`$STRING`"
     }
     {
       name: "lang"
       req: true
+      short: "Language code (ISO 639-1)"
       type: "`$STRING`"
     }
     {
@@ -48,11 +51,13 @@ main: kit: entity: submit: {
     {
       name: "setup"
       req: false
+      short: "The setup part (for twopart jokes only)"
       type: "`$STRING`"
     }
     {
       name: "timestamp"
       req: false
+      short: "13-character UNIX timestamp"
       type: "`$INTEGER`"
     }
     {

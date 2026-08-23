@@ -199,15 +199,15 @@ submit = client.Submit()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `category` | `str` | Yes |  |
-| `delivery` | `str` | No |  |
+| `delivery` | `str` | No | The delivery/punchline (for twopart jokes only) |
 | `error` | `bool` | No |  |
 | `flags` | `dict` | Yes |  |
 | `formatVersion` | `int` | Yes |  |
-| `joke` | `str` | No |  |
-| `lang` | `str` | Yes |  |
+| `joke` | `str` | No | The joke content (for single-type jokes only) |
+| `lang` | `str` | Yes | Language code (ISO 639-1) |
 | `message` | `str` | No |  |
-| `setup` | `str` | No |  |
-| `timestamp` | `int` | No |  |
+| `setup` | `str` | No | The setup part (for twopart jokes only) |
+| `timestamp` | `int` | No | 13-character UNIX timestamp |
 | `type` | `str` | Yes |  |
 
 ### Operations

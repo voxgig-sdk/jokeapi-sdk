@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Jokeapi",
+			"slug": "jokeapi",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -229,6 +232,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "delivery",
+						"short": "The delivery/punchline (for twopart jokes only)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -247,11 +251,13 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "joke",
+						"short": "The joke content (for single-type jokes only)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lang",
 						"req": true,
+						"short": "Language code (ISO 639-1)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -260,10 +266,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "setup",
+						"short": "The setup part (for twopart jokes only)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "13-character UNIX timestamp",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
