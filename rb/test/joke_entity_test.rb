@@ -41,9 +41,13 @@ class JokeEntityTest < Minitest::Test
 
     # LOAD
     joke_ref01_ent = client.Joke(nil)
-    joke_ref01_match_dt0 = {}
+    joke_ref01_match_dt0 = {
+      "id" => joke_ref01_data["id"],
+    }
     joke_ref01_data_dt0_loaded = joke_ref01_ent.load(joke_ref01_match_dt0, nil)
-    assert !joke_ref01_data_dt0_loaded.nil?
+    joke_ref01_data_dt0_load_result = Helpers.to_map(joke_ref01_data_dt0_loaded.respond_to?(:data_get) ? joke_ref01_data_dt0_loaded.data_get : joke_ref01_data_dt0_loaded)
+    assert !joke_ref01_data_dt0_load_result.nil?
+    assert_equal joke_ref01_data_dt0_load_result["id"], joke_ref01_data["id"]
 
   end
 end

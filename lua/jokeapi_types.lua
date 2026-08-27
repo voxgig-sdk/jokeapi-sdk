@@ -23,6 +23,7 @@
 ---@field version? string
 
 ---@class Joke
+---@field id? string
 
 ---@class JokeLoadMatch
 ---@field id string

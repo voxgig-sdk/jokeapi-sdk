@@ -48,9 +48,13 @@ class JokeEntityTest extends TestCase
 
         // LOAD
         $joke_ref01_ent = $client->Joke(null);
-        $joke_ref01_match_dt0 = [];
+        $joke_ref01_match_dt0 = [
+            "id" => $joke_ref01_data["id"],
+        ];
         $joke_ref01_data_dt0_loaded = $joke_ref01_ent->load($joke_ref01_match_dt0, null);
-        $this->assertNotNull($joke_ref01_data_dt0_loaded);
+        $joke_ref01_data_dt0_load_result = Helpers::to_map(is_object($joke_ref01_data_dt0_loaded) && method_exists($joke_ref01_data_dt0_loaded, 'data_get') ? $joke_ref01_data_dt0_loaded->data_get() : $joke_ref01_data_dt0_loaded);
+        $this->assertNotNull($joke_ref01_data_dt0_load_result);
+        $this->assertEquals($joke_ref01_data_dt0_load_result["id"], $joke_ref01_data["id"]);
 
     }
 }

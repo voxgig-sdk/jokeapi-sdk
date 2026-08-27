@@ -44,10 +44,14 @@ describe("JokeEntity", function()
 
     -- LOAD
     local joke_ref01_ent = client:Joke(nil)
-    local joke_ref01_match_dt0 = {}
+    local joke_ref01_match_dt0 = {
+      id = joke_ref01_data["id"],
+    }
     local joke_ref01_data_dt0_loaded, err = joke_ref01_ent:load(joke_ref01_match_dt0, nil)
     assert.is_nil(err)
-    assert.is_not_nil(joke_ref01_data_dt0_loaded)
+    local joke_ref01_data_dt0_load_result = helpers.to_map(type(joke_ref01_data_dt0_loaded) == 'table' and joke_ref01_data_dt0_loaded.data_get and joke_ref01_data_dt0_loaded:data_get() or joke_ref01_data_dt0_loaded)
+    assert.is_not_nil(joke_ref01_data_dt0_load_result)
+    assert.are.equal(joke_ref01_data_dt0_load_result["id"], joke_ref01_data["id"])
 
   end)
 end)

@@ -34,6 +34,7 @@ type InfoListMatch struct {
 
 // Joke is the typed data model for the joke entity.
 type Joke struct {
+	Id *string `json:"id,omitempty"`
 }
 
 // JokeLoadMatch is the typed request payload for Joke.LoadTyped.

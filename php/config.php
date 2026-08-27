@@ -42,6 +42,7 @@ class JokeapiConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -133,7 +134,12 @@ class JokeapiConfig
           ],
         ],
         'joke' => [
-          'fields' => [],
+          'fields' => [
+            [
+              'name' => 'id',
+              'type' => '`$STRING`',
+            ],
+          ],
           'name' => 'joke',
           'op' => [
             'load' => [

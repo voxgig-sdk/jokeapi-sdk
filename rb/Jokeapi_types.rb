@@ -67,8 +67,13 @@ InfoListMatch = Struct.new(
 )
 
 # Joke entity data model.
-class Joke
-end
+#
+# @!attribute [rw] id
+#   @return [String, nil]
+Joke = Struct.new(
+  :id,
+  keyword_init: true
+)
 
 # Request payload for Joke#load.
 #

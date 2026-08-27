@@ -48,9 +48,13 @@ class TestJokeEntity:
 
         # LOAD
         joke_ref01_ent = client.Joke(None)
-        joke_ref01_match_dt0 = {}
+        joke_ref01_match_dt0 = {
+            "id": joke_ref01_data["id"],
+        }
         joke_ref01_data_dt0_loaded = joke_ref01_ent.load(joke_ref01_match_dt0, None)
-        assert joke_ref01_data_dt0_loaded is not None
+        joke_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(joke_ref01_data_dt0_loaded))
+        assert joke_ref01_data_dt0_load_result is not None
+        assert joke_ref01_data_dt0_load_result["id"] == joke_ref01_data["id"]
 
 
 

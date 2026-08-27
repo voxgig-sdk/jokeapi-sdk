@@ -24,6 +24,7 @@ export interface InfoListMatch {
 }
 
 export interface Joke {
+  id?: string
 }
 
 export interface JokeLoadMatch {

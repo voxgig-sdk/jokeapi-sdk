@@ -37,6 +37,7 @@ class InfoListMatch
 /** Joke entity data model. */
 class Joke
 {
+    public ?string $id = null;
 }
 
 /** Request payload for Joke#load. */

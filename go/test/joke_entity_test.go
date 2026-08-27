@@ -61,13 +61,19 @@ func TestJokeEntity(t *testing.T) {
 
 		// LOAD
 		jokeRef01Ent := client.Joke(nil)
-		jokeRef01MatchDt0 := map[string]any{}
+		jokeRef01MatchDt0 := map[string]any{
+			"id": jokeRef01Data["id"],
+		}
 		jokeRef01DataDt0Loaded, err := jokeRef01Ent.Load(jokeRef01MatchDt0, nil)
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		if jokeRef01DataDt0Loaded == nil {
-			t.Fatal("expected load result to be non-nil")
+		jokeRef01DataDt0LoadResult := core.ToMapAny(entityData(jokeRef01DataDt0Loaded))
+		if jokeRef01DataDt0LoadResult == nil {
+			t.Fatal("expected load result to be a map")
+		}
+		if jokeRef01DataDt0LoadResult["id"] != jokeRef01Data["id"] {
+			t.Fatal("expected load result id to match")
 		}
 
 	})

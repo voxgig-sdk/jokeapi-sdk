@@ -28,6 +28,7 @@ module JokeapiConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -119,7 +120,12 @@ module JokeapiConfig
           },
         },
         "joke" => {
-          "fields" => [],
+          "fields" => [
+            {
+              "name" => "id",
+              "type" => "`$STRING`",
+            },
+          ],
           "name" => "joke",
           "op" => {
             "load" => {

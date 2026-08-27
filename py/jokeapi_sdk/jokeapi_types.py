@@ -34,8 +34,8 @@ class InfoListMatch(TypedDict, total=False):
     version: str
 
 
-class Joke(TypedDict):
-    pass
+class Joke(TypedDict, total=False):
+    id: str
 
 
 class JokeLoadMatch(TypedDict):
