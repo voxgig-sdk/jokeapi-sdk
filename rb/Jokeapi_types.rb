@@ -39,30 +39,14 @@ Info = Struct.new(
 
 # Request payload for Info#list.
 #
-# @!attribute [rw] error
-#   @return [Boolean, nil]
+# @!attribute [rw] format
+#   @return [String, nil]
 #
-# @!attribute [rw] formats
-#   @return [Array, nil]
-#
-# @!attribute [rw] jokeLanguages
-#   @return [Array, nil]
-#
-# @!attribute [rw] jokes
-#   @return [Hash, nil]
-#
-# @!attribute [rw] systemLanguages
-#   @return [Array, nil]
-#
-# @!attribute [rw] version
+# @!attribute [rw] lang
 #   @return [String, nil]
 InfoListMatch = Struct.new(
-  :error,
-  :formats,
-  :jokeLanguages,
-  :jokes,
-  :systemLanguages,
-  :version,
+  :format,
+  :lang,
   keyword_init: true
 )
 
@@ -79,8 +63,40 @@ Joke = Struct.new(
 #
 # @!attribute [rw] id
 #   @return [String]
+#
+# @!attribute [rw] amount
+#   @return [Integer, nil]
+#
+# @!attribute [rw] blacklist_flag
+#   @return [String, nil]
+#
+# @!attribute [rw] contain
+#   @return [String, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+#
+# @!attribute [rw] id_range
+#   @return [String, nil]
+#
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] safe_mode
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 JokeLoadMatch = Struct.new(
   :id,
+  :amount,
+  :blacklist_flag,
+  :contain,
+  :format,
+  :id_range,
+  :lang,
+  :safe_mode,
+  :type,
   keyword_init: true
 )
 
@@ -135,6 +151,12 @@ Submit = Struct.new(
 
 # Request payload for Submit#create.
 #
+# @!attribute [rw] dry_run
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] format
+#   @return [String, nil]
+#
 # @!attribute [rw] category
 #   @return [String]
 #
@@ -168,6 +190,8 @@ Submit = Struct.new(
 # @!attribute [rw] type
 #   @return [String]
 SubmitCreateData = Struct.new(
+  :dry_run,
+  :format,
   :category,
   :delivery,
   :error,

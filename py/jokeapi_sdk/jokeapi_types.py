@@ -26,20 +26,27 @@ class Info(TypedDict, total=False):
 
 
 class InfoListMatch(TypedDict, total=False):
-    error: bool
-    formats: list
-    jokeLanguages: list
-    jokes: dict
-    systemLanguages: list
-    version: str
+    format: str
+    lang: str
 
 
 class Joke(TypedDict, total=False):
     id: str
 
 
-class JokeLoadMatch(TypedDict):
+class JokeLoadMatchRequired(TypedDict):
     id: str
+
+
+class JokeLoadMatch(JokeLoadMatchRequired, total=False):
+    amount: int
+    blacklist_flag: str
+    contain: str
+    format: str
+    id_range: str
+    lang: str
+    safe_mode: bool
+    type: str
 
 
 class SubmitRequired(TypedDict):
@@ -68,6 +75,8 @@ class SubmitCreateDataRequired(TypedDict):
 
 
 class SubmitCreateData(SubmitCreateDataRequired, total=False):
+    dry_run: bool
+    format: str
     delivery: str
     error: bool
     joke: str

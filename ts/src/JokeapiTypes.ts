@@ -15,12 +15,8 @@ export interface Info {
 }
 
 export interface InfoListMatch {
-  error?: boolean
-  formats?: any[]
-  jokeLanguages?: any[]
-  jokes?: Record<string, any>
-  systemLanguages?: any[]
-  version?: string
+  format?: string
+  lang?: string
 }
 
 export interface Joke {
@@ -29,6 +25,14 @@ export interface Joke {
 
 export interface JokeLoadMatch {
   id: string
+  amount?: number
+  blacklist_flag?: string
+  contain?: string
+  format?: string
+  id_range?: string
+  lang?: string
+  safe_mode?: boolean
+  type?: string
 }
 
 export interface Submit {
@@ -46,6 +50,8 @@ export interface Submit {
 }
 
 export interface SubmitCreateData {
+  dry_run?: boolean
+  format?: string
   category: string
   delivery?: string
   error?: boolean

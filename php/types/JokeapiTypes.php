@@ -26,12 +26,8 @@ class Info
 /** Request payload for Info#list. */
 class InfoListMatch
 {
-    public ?bool $error = null;
-    public ?array $formats = null;
-    public ?array $jokeLanguages = null;
-    public ?array $jokes = null;
-    public ?array $systemLanguages = null;
-    public ?string $version = null;
+    public ?string $format = null;
+    public ?string $lang = null;
 }
 
 /** Joke entity data model. */
@@ -44,6 +40,14 @@ class Joke
 class JokeLoadMatch
 {
     public string $id;
+    public ?int $amount = null;
+    public ?string $blacklist_flag = null;
+    public ?string $contain = null;
+    public ?string $format = null;
+    public ?string $id_range = null;
+    public ?string $lang = null;
+    public ?bool $safe_mode = null;
+    public ?string $type = null;
 }
 
 /** Submit entity data model. */
@@ -65,6 +69,8 @@ class Submit
 /** Request payload for Submit#create. */
 class SubmitCreateData
 {
+    public ?bool $dry_run = null;
+    public ?string $format = null;
     public string $category;
     public ?string $delivery = null;
     public ?bool $error = null;

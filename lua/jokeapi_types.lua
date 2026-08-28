@@ -15,18 +15,22 @@
 ---@field version? string
 
 ---@class InfoListMatch
----@field error? boolean
----@field formats? table
----@field jokeLanguages? table
----@field jokes? table
----@field systemLanguages? table
----@field version? string
+---@field format? string
+---@field lang? string
 
 ---@class Joke
 ---@field id? string
 
 ---@class JokeLoadMatch
 ---@field id string
+---@field amount? number
+---@field blacklist_flag? string
+---@field contain? string
+---@field format? string
+---@field id_range? string
+---@field lang? string
+---@field safe_mode? boolean
+---@field type? string
 
 ---@class Submit
 ---@field category string
@@ -42,6 +46,8 @@
 ---@field type string
 
 ---@class SubmitCreateData
+---@field dry_run? boolean
+---@field format? string
 ---@field category string
 ---@field delivery? string
 ---@field error? boolean

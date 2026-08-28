@@ -24,12 +24,8 @@ type Info struct {
 
 // InfoListMatch is the typed request payload for Info.ListTyped.
 type InfoListMatch struct {
-	Error *bool `json:"error,omitempty"`
-	Formats *[]any `json:"formats,omitempty"`
-	JokeLanguages *[]any `json:"jokeLanguages,omitempty"`
-	Jokes *map[string]any `json:"jokes,omitempty"`
-	SystemLanguages *[]any `json:"systemLanguages,omitempty"`
-	Version *string `json:"version,omitempty"`
+	Format *string `json:"format,omitempty"`
+	Lang *string `json:"lang,omitempty"`
 }
 
 // Joke is the typed data model for the joke entity.
@@ -40,6 +36,14 @@ type Joke struct {
 // JokeLoadMatch is the typed request payload for Joke.LoadTyped.
 type JokeLoadMatch struct {
 	Id string `json:"id"`
+	Amount *int `json:"amount,omitempty"`
+	BlacklistFlag *string `json:"blacklist_flag,omitempty"`
+	Contain *string `json:"contain,omitempty"`
+	Format *string `json:"format,omitempty"`
+	IdRange *string `json:"id_range,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	SafeMode *bool `json:"safe_mode,omitempty"`
+	Type *string `json:"type,omitempty"`
 }
 
 // Submit is the typed data model for the submit entity.
@@ -59,6 +63,8 @@ type Submit struct {
 
 // SubmitCreateData is the typed request payload for Submit.CreateTyped.
 type SubmitCreateData struct {
+	DryRun *bool `json:"dry_run,omitempty"`
+	Format *string `json:"format,omitempty"`
 	Category string `json:"category"`
 	Delivery *string `json:"delivery,omitempty"`
 	Error *bool `json:"error,omitempty"`
