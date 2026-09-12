@@ -94,8 +94,10 @@ main: kit: entity: submit: {
           }
           method: "POST"
           orig: "/submit"
-          parts: [
-            "submit"
+          segments: [
+            {
+              lit: "submit"
+            }
           ]
           select: {
             exist: [

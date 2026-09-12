@@ -100,15 +100,19 @@ main: kit: entity: joke: {
           }
           method: "GET"
           orig: "/joke/{category}"
-          parts: [
-            "joke"
-            "{id}"
-          ]
           rename: {
             param: {
               category: "id"
             }
           }
+          segments: [
+            {
+              lit: "joke"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "amount"

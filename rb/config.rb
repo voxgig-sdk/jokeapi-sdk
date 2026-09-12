@@ -98,8 +98,10 @@ module JokeapiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/info",
-                  "parts" => [
-                    "info",
+                  "segments" => [
+                    {
+                      "lit" => "info",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -111,6 +113,9 @@ module JokeapiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "info",
+                  ],
                 },
               ],
             },
@@ -126,6 +131,10 @@ module JokeapiConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "joke",
           "op" => {
             "load" => {
@@ -203,15 +212,19 @@ module JokeapiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/joke/{category}",
-                  "parts" => [
-                    "joke",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "category" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "joke",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "amount",
@@ -229,6 +242,10 @@ module JokeapiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "joke",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -321,8 +338,10 @@ module JokeapiConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/submit",
-                  "parts" => [
-                    "submit",
+                  "segments" => [
+                    {
+                      "lit" => "submit",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -334,6 +353,9 @@ module JokeapiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "submit",
+                  ],
                 },
               ],
             },

@@ -65,8 +65,10 @@ main: kit: entity: info: {
           }
           method: "GET"
           orig: "/info"
-          parts: [
-            "info"
+          segments: [
+            {
+              lit: "info"
+            }
           ]
           select: {
             exist: [

@@ -112,8 +112,10 @@ class JokeapiConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/info',
-                  'parts' => [
-                    'info',
+                  'segments' => [
+                    [
+                      'lit' => 'info',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -124,6 +126,9 @@ class JokeapiConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'info',
                   ],
                 ],
               ],
@@ -139,6 +144,10 @@ class JokeapiConfig
               'name' => 'id',
               'type' => '`$STRING`',
             ],
+          ],
+          'id' => [
+            'field' => 'id',
+            'name' => 'id',
           ],
           'name' => 'joke',
           'op' => [
@@ -217,13 +226,17 @@ class JokeapiConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/joke/{category}',
-                  'parts' => [
-                    'joke',
-                    '{id}',
-                  ],
                   'rename' => [
                     'param' => [
                       'category' => 'id',
+                    ],
+                  ],
+                  'segments' => [
+                    [
+                      'lit' => 'joke',
+                    ],
+                    [
+                      'var' => 'id',
                     ],
                   ],
                   'select' => [
@@ -242,6 +255,10 @@ class JokeapiConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'joke',
+                    '{id}',
                   ],
                 ],
               ],
@@ -335,8 +352,10 @@ class JokeapiConfig
                   'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/submit',
-                  'parts' => [
-                    'submit',
+                  'segments' => [
+                    [
+                      'lit' => 'submit',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -347,6 +366,9 @@ class JokeapiConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'submit',
                   ],
                 ],
               ],
