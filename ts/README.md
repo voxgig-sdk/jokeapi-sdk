@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
+import { JokeapiSDK } from '@voxgig-sdk/jokeapi-sdk'
 
 const client = new JokeapiSDK()
 ```
@@ -510,7 +510,7 @@ jokeapi/
 Import the SDK from the package root:
 
 ```ts
-import { JokeapiSDK } from '@voxgig-sdk/jokeapi'
+import { JokeapiSDK } from '@voxgig-sdk/jokeapi-sdk'
 ```
 
 ### Entity state
