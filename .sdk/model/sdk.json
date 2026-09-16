@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "info": {
           "active": true,
@@ -98,6 +162,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /info",
+                    "json": "{\"operationId\":\"getInfo\",\"parameters\":[{\"description\":\"Response format. Defaults to JSON if not specified.\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\",\"txt\"],\"type\":\"string\"}},{\"description\":\"Language code for system messages following ISO 639-1 / Alpha-2 specification.\",\"in\":\"query\",\"name\":\"lang\",\"required\":false,\"schema\":{\"default\":\"en\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":false,\"type\":\"boolean\"},\"formats\":{\"example\":[\"json\",\"xml\",\"yaml\",\"txt\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"jokeLanguages\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"jokes\":{\"properties\":{\"categories\":{\"example\":[\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"flags\":{\"example\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"totalCount\":{\"example\":1368,\"type\":\"integer\"},\"types\":{\"example\":[\"single\",\"twopart\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"systemLanguages\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"version\":{\"example\":\"2.3.3\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with API information\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -233,6 +303,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /joke/{category}",
+                    "json": "{\"operationId\":\"getJoke\",\"parameters\":[{\"description\":\"Category of jokes to retrieve. Use 'Any' for random category or specify one or more categories separated by commas.\",\"in\":\"path\",\"name\":\"category\",\"required\":true,\"schema\":{\"enum\":[\"Any\",\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"type\":\"string\"}},{\"description\":\"Response format. Defaults to JSON if not specified.\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\",\"txt\"],\"type\":\"string\"}},{\"description\":\"Comma or plus-separated list of flags to blacklist. Jokes matching these flags will not be served.\",\"example\":\"nsfw,racist,sexist\",\"in\":\"query\",\"name\":\"blacklistFlags\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Language code following ISO 639-1 / Alpha-2 specification. Returns jokes in the specified language.\",\"example\":\"en\",\"in\":\"query\",\"name\":\"lang\",\"required\":false,\"schema\":{\"default\":\"en\",\"type\":\"string\"}},{\"description\":\"Type of joke to retrieve. If not specified, both types will be returned.\",\"in\":\"query\",\"name\":\"type\",\"required\":false,\"schema\":{\"enum\":[\"single\",\"twopart\"],\"type\":\"string\"}},{\"description\":\"Search string - only jokes containing this string will be served (case insensitive). Special characters must be percent-encoded.\",\"example\":\"C%23\",\"in\":\"query\",\"name\":\"contains\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"ID range of jokes to retrieve. Can be a single ID or a range separated by minus, comma, or plus sign (e.g., '0-55' or '33').\",\"example\":\"0-55\",\"in\":\"query\",\"name\":\"idRange\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Number of jokes to retrieve in a single request. Maximum is 10, defaults to 1.\",\"in\":\"query\",\"name\":\"amount\",\"required\":false,\"schema\":{\"default\":1,\"maximum\":10,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"If enabled, only safe jokes will be served (no explicit content).\",\"in\":\"query\",\"name\":\"safe-mode\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"oneOf\":[{\"properties\":{\"category\":{\"enum\":[\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"example\":\"Programming\",\"type\":\"string\"},\"error\":{\"example\":false,\"type\":\"boolean\"},\"flags\":{\"properties\":{\"explicit\":{\"description\":\"Contains explicit language\",\"example\":false,\"type\":\"boolean\"},\"nsfw\":{\"description\":\"Not safe for work\",\"example\":false,\"type\":\"boolean\"},\"political\":{\"description\":\"Contains political content\",\"example\":false,\"type\":\"boolean\"},\"racist\":{\"description\":\"Contains racist content\",\"example\":false,\"type\":\"boolean\"},\"religious\":{\"description\":\"Contains religious content\",\"example\":false,\"type\":\"boolean\"},\"sexist\":{\"description\":\"Contains sexist content\",\"example\":false,\"type\":\"boolean\"}},\"required\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"type\":\"object\"},\"id\":{\"example\":12,\"type\":\"integer\"},\"joke\":{\"example\":\"// This line doesn't actually do anything, but the code stops working when I delete it.\",\"type\":\"string\"},\"lang\":{\"example\":\"en\",\"type\":\"string\"},\"safe\":{\"example\":true,\"type\":\"boolean\"},\"type\":{\"enum\":[\"single\"],\"example\":\"single\",\"type\":\"string\"}},\"required\":[\"error\",\"category\",\"type\",\"joke\",\"flags\",\"id\",\"lang\"],\"type\":\"object\"},{\"properties\":{\"category\":{\"enum\":[\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"example\":\"Programming\",\"type\":\"string\"},\"delivery\":{\"example\":\"Because they need to C#\",\"type\":\"string\"},\"error\":{\"example\":false,\"type\":\"boolean\"},\"flags\":{\"properties\":{\"explicit\":{\"description\":\"Contains explicit language\",\"example\":false,\"type\":\"boolean\"},\"nsfw\":{\"description\":\"Not safe for work\",\"example\":false,\"type\":\"boolean\"},\"political\":{\"description\":\"Contains political content\",\"example\":false,\"type\":\"boolean\"},\"racist\":{\"description\":\"Contains racist content\",\"example\":false,\"type\":\"boolean\"},\"religious\":{\"description\":\"Contains religious content\",\"example\":false,\"type\":\"boolean\"},\"sexist\":{\"description\":\"Contains sexist content\",\"example\":false,\"type\":\"boolean\"}},\"required\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"type\":\"object\"},\"id\":{\"example\":51,\"type\":\"integer\"},\"lang\":{\"example\":\"en\",\"type\":\"string\"},\"safe\":{\"example\":true,\"type\":\"boolean\"},\"setup\":{\"example\":\"Why do programmers wear glasses?\",\"type\":\"string\"},\"type\":{\"enum\":[\"twopart\"],\"example\":\"twopart\",\"type\":\"string\"}},\"required\":[\"error\",\"category\",\"type\",\"setup\",\"delivery\",\"flags\",\"id\",\"lang\"],\"type\":\"object\"},{\"properties\":{\"amount\":{\"example\":5,\"type\":\"integer\"},\"error\":{\"example\":false,\"type\":\"boolean\"},\"jokes\":{\"items\":{\"oneOf\":[{\"properties\":{\"category\":{\"enum\":[\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"example\":\"Programming\",\"type\":\"string\"},\"error\":{\"example\":false,\"type\":\"boolean\"},\"flags\":{\"properties\":{\"explicit\":{\"description\":\"Contains explicit language\",\"example\":false,\"type\":\"boolean\"},\"nsfw\":{\"description\":\"Not safe for work\",\"example\":false,\"type\":\"boolean\"},\"political\":{\"description\":\"Contains political content\",\"example\":false,\"type\":\"boolean\"},\"racist\":{\"description\":\"Contains racist content\",\"example\":false,\"type\":\"boolean\"},\"religious\":{\"description\":\"Contains religious content\",\"example\":false,\"type\":\"boolean\"},\"sexist\":{\"description\":\"Contains sexist content\",\"example\":false,\"type\":\"boolean\"}},\"required\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"type\":\"object\"},\"id\":{\"example\":12,\"type\":\"integer\"},\"joke\":{\"example\":\"// This line doesn't actually do anything, but the code stops working when I delete it.\",\"type\":\"string\"},\"lang\":{\"example\":\"en\",\"type\":\"string\"},\"safe\":{\"example\":true,\"type\":\"boolean\"},\"type\":{\"enum\":[\"single\"],\"example\":\"single\",\"type\":\"string\"}},\"required\":[\"error\",\"category\",\"type\",\"joke\",\"flags\",\"id\",\"lang\"],\"type\":\"object\"},{\"properties\":{\"category\":{\"enum\":[\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"example\":\"Programming\",\"type\":\"string\"},\"delivery\":{\"example\":\"Because they need to C#\",\"type\":\"string\"},\"error\":{\"example\":false,\"type\":\"boolean\"},\"flags\":{\"properties\":{\"explicit\":{\"description\":\"Contains explicit language\",\"example\":false,\"type\":\"boolean\"},\"nsfw\":{\"description\":\"Not safe for work\",\"example\":false,\"type\":\"boolean\"},\"political\":{\"description\":\"Contains political content\",\"example\":false,\"type\":\"boolean\"},\"racist\":{\"description\":\"Contains racist content\",\"example\":false,\"type\":\"boolean\"},\"religious\":{\"description\":\"Contains religious content\",\"example\":false,\"type\":\"boolean\"},\"sexist\":{\"description\":\"Contains sexist content\",\"example\":false,\"type\":\"boolean\"}},\"required\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"type\":\"object\"},\"id\":{\"example\":51,\"type\":\"integer\"},\"lang\":{\"example\":\"en\",\"type\":\"string\"},\"safe\":{\"example\":true,\"type\":\"boolean\"},\"setup\":{\"example\":\"Why do programmers wear glasses?\",\"type\":\"string\"},\"type\":{\"enum\":[\"twopart\"],\"example\":\"twopart\",\"type\":\"string\"}},\"required\":[\"error\",\"category\",\"type\",\"setup\",\"delivery\",\"flags\",\"id\",\"lang\"],\"type\":\"object\"}]},\"type\":\"array\"}},\"required\":[\"error\",\"amount\",\"jokes\"],\"type\":\"object\"}]}},\"application/xml\":{\"schema\":{\"type\":\"string\"}},\"application/yaml\":{\"schema\":{\"type\":\"string\"}},\"text/plain\":{\"schema\":{\"type\":\"string\"}}},\"description\":\"Successful response with joke(s)\",\"headers\":{\"RateLimit-Limit\":{\"description\":\"Total requests allowed per minute\",\"schema\":{\"type\":\"integer\"}},\"RateLimit-Remaining\":{\"description\":\"Remaining requests in current budget\",\"schema\":{\"type\":\"integer\"}},\"RateLimit-Reset\":{\"description\":\"IMF-fixdate timestamp when request budget resets\",\"schema\":{\"type\":\"string\"}},\"Retry-After\":{\"description\":\"Seconds until request budget resets\",\"schema\":{\"type\":\"integer\"}}}},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"additionalInfo\":{\"type\":\"string\"},\"causedBy\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"code\":{\"example\":400,\"type\":\"integer\"},\"error\":{\"example\":true,\"type\":\"boolean\"},\"internalError\":{\"example\":false,\"type\":\"boolean\"},\"message\":{\"example\":\"Invalid parameter value\",\"type\":\"string\"},\"timestamp\":{\"description\":\"13-character UNIX timestamp\",\"type\":\"integer\"}},\"required\":[\"error\",\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"additionalInfo\":{\"type\":\"string\"},\"causedBy\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"code\":{\"example\":400,\"type\":\"integer\"},\"error\":{\"example\":true,\"type\":\"boolean\"},\"internalError\":{\"example\":false,\"type\":\"boolean\"},\"message\":{\"example\":\"Invalid parameter value\",\"type\":\"string\"},\"timestamp\":{\"description\":\"13-character UNIX timestamp\",\"type\":\"integer\"}},\"required\":[\"error\",\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - too many requests\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -382,6 +458,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "POST /submit",
+                    "json": "{\"operationId\":\"submitJoke\",\"parameters\":[{\"description\":\"If present, validates the joke without actually saving it to the API.\",\"in\":\"query\",\"name\":\"dry-run\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Response format. Defaults to JSON if not specified.\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\",\"txt\"],\"type\":\"string\"}}],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"category\":{\"enum\":[\"Misc\",\"Programming\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"example\":\"Programming\",\"type\":\"string\"},\"delivery\":{\"description\":\"The delivery/punchline (for twopart jokes only)\",\"type\":\"string\"},\"flags\":{\"properties\":{\"explicit\":{\"description\":\"Contains explicit language\",\"example\":false,\"type\":\"boolean\"},\"nsfw\":{\"description\":\"Not safe for work\",\"example\":false,\"type\":\"boolean\"},\"political\":{\"description\":\"Contains political content\",\"example\":false,\"type\":\"boolean\"},\"racist\":{\"description\":\"Contains racist content\",\"example\":false,\"type\":\"boolean\"},\"religious\":{\"description\":\"Contains religious content\",\"example\":false,\"type\":\"boolean\"},\"sexist\":{\"description\":\"Contains sexist content\",\"example\":false,\"type\":\"boolean\"}},\"required\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"type\":\"object\"},\"formatVersion\":{\"example\":3,\"type\":\"integer\"},\"joke\":{\"description\":\"The joke content (for single-type jokes only)\",\"type\":\"string\"},\"lang\":{\"description\":\"Language code (ISO 639-1)\",\"example\":\"en\",\"type\":\"string\"},\"setup\":{\"description\":\"The setup part (for twopart jokes only)\",\"type\":\"string\"},\"type\":{\"enum\":[\"single\",\"twopart\"],\"example\":\"single\",\"type\":\"string\"}},\"required\":[\"formatVersion\",\"category\",\"type\",\"flags\",\"lang\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":false,\"type\":\"boolean\"},\"message\":{\"example\":\"Joke submitted successfully\",\"type\":\"string\"},\"timestamp\":{\"description\":\"13-character UNIX timestamp\",\"example\":1234567890123,\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Joke submitted successfully or dry-run validation successful\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"additionalInfo\":{\"type\":\"string\"},\"causedBy\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"code\":{\"example\":400,\"type\":\"integer\"},\"error\":{\"example\":true,\"type\":\"boolean\"},\"internalError\":{\"example\":false,\"type\":\"boolean\"},\"message\":{\"example\":\"Invalid parameter value\",\"type\":\"string\"},\"timestamp\":{\"description\":\"13-character UNIX timestamp\",\"type\":\"integer\"}},\"required\":[\"error\",\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Bad request - invalid joke submission\"},\"429\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"additionalInfo\":{\"type\":\"string\"},\"causedBy\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"code\":{\"example\":400,\"type\":\"integer\"},\"error\":{\"example\":true,\"type\":\"boolean\"},\"internalError\":{\"example\":false,\"type\":\"boolean\"},\"message\":{\"example\":\"Invalid parameter value\",\"type\":\"string\"},\"timestamp\":{\"description\":\"13-character UNIX timestamp\",\"type\":\"integer\"}},\"required\":[\"error\",\"code\",\"message\"],\"type\":\"object\"}}},\"description\":\"Rate limit exceeded - maximum 5 requests per minute for submissions\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/submit",
@@ -410,13 +492,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -506,6 +798,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -613,6 +1001,48 @@
         "website": "https://v2.jokeapi.dev"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1167,6 +1597,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1208,7 +1639,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

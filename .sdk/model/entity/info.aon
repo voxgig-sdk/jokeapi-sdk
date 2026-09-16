@@ -63,6 +63,12 @@ main: kit: entity: info: {
               }
             ]
           }
+          contract: {
+            id: "GET /info"
+            json: "{\"operationId\":\"getInfo\",\"parameters\":[{\"description\":\"Response format. Defaults to JSON if not specified.\",\"in\":\"query\",\"name\":\"format\",\"required\":false,\"schema\":{\"default\":\"json\",\"enum\":[\"json\",\"xml\",\"yaml\",\"txt\"],\"type\":\"string\"}},{\"description\":\"Language code for system messages following ISO 639-1 / Alpha-2 specification.\",\"in\":\"query\",\"name\":\"lang\",\"required\":false,\"schema\":{\"default\":\"en\",\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"error\":{\"example\":false,\"type\":\"boolean\"},\"formats\":{\"example\":[\"json\",\"xml\",\"yaml\",\"txt\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"jokeLanguages\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"jokes\":{\"properties\":{\"categories\":{\"example\":[\"Programming\",\"Misc\",\"Dark\",\"Pun\",\"Spooky\",\"Christmas\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"flags\":{\"example\":[\"nsfw\",\"religious\",\"political\",\"racist\",\"sexist\",\"explicit\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"totalCount\":{\"example\":1368,\"type\":\"integer\"},\"types\":{\"example\":[\"single\",\"twopart\"],\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"systemLanguages\":{\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"version\":{\"example\":\"2.3.3\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response with API information\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/info"
           segments: [
