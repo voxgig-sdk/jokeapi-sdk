@@ -105,12 +105,12 @@ local results, err = client:Info():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/jokeapi-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/releases) |
-| Python | `voxgig-sdk-jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/releases) |
-| PHP | `voxgig-sdk/jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/releases) |
+| TypeScript | `@voxgig-sdk/jokeapi-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/tags) |
+| Python | `voxgig-sdk-jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/tags) |
+| PHP | `voxgig-sdk/jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/jokeapi-sdk/go` | `go get github.com/voxgig-sdk/jokeapi-sdk/go@latest` |
-| Ruby | `voxgig-sdk-jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/releases) |
-| Lua | `voxgig-sdk-jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/releases) |
+| Ruby | `voxgig-sdk-jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/tags) |
+| Lua | `voxgig-sdk-jokeapi` | publish pending — [install from git tag](https://github.com/voxgig-sdk/jokeapi-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/jokeapi-sdk/go-cli` | `go install github.com/voxgig-sdk/jokeapi-sdk/go-cli/cmd/jokeapi@latest` |
 | Go MCP server | `github.com/voxgig-sdk/jokeapi-sdk/go-mcp` | `go get github.com/voxgig-sdk/jokeapi-sdk/go-mcp@latest` |
 

@@ -1,5 +1,5 @@
 # Entity Models
 
-@"info.aon"
-@"joke.aon"
-@"submit.aon"
+@"./info.aon"
+@"./joke.aon"
+@"./submit.aon"
